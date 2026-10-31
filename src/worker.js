@@ -3,7 +3,7 @@
 //                                     description, all from the catalog. Any failure serves the page untouched.
 //            GET /<app>/llms.txt       per-app brief for AI agents
 //            GET /robots.txt, /sitemap.xml, /llms-full.txt, /<INDEXNOW_KEY>.txt
-//            GET /playbill/ext/<app>/(robots.txt|sitemap.xml|llms.txt)   for apps on other hosts (18-0.co rewrites here)
+//            GET /playbill/ext/<app>/(robots.txt|sitemap.xml|llms.txt|head.html)  for apps on other hosts (18-0.co)
 //   operator /playbill/api/admin/*     cookie session (ADMIN_PASSWORD) or agent (Bearer AGENT_TOKEN)
 //   static   /playbill/admin/          the console
 import { ensureSchema, getSettings, setSetting, loadApps, invalidate, publicApp } from './db.js';
@@ -46,7 +46,7 @@ export default {
       }
       const ll = p.match(/^\/([a-z0-9-]+)\/llms\.txt$/);
       if (ll) return llms(env, ctx, req, ll[1]);
-      const ext = p.match(/^\/playbill\/ext\/([a-z0-9-]+)\/(robots\.txt|sitemap\.xml|llms\.txt)$/);
+      const ext = p.match(/^\/playbill\/ext\/([a-z0-9-]+)\/(robots\.txt|sitemap\.xml|llms\.txt|head\.html)$/);
       if (ext) return external(env, ctx, req, ext[1], ext[2]);
       if (p === '/playbill/api/google/callback') return googleCallback(env, url);
       if (p.startsWith('/playbill/api/admin/')) return admin(env, req, url, p.slice('/playbill/api/admin/'.length), ctx);
@@ -131,6 +131,8 @@ async function external(env, ctx, req, id, file) {
   const host = new URL(app.url).origin;
   if (file === 'llms.txt') { count(env, ctx, req, id, 'llms'); return text(llmsTxt(app, apps)); }
   if (file === 'robots.txt') return text(robots(host));
+  // Static hosts (18-0.co on Vercel) splice this into their HTML at build time.
+  if (file === 'head.html') return text(`${headPlan(app).jsonld}\n<!--playbill-body-->\n${aboutHtml(app, apps)}`, 'text/html');
   return text(sitemap(apps, host), 'application/xml');
 }
 
