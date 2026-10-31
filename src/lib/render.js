@@ -179,11 +179,11 @@ const BOTS = [
   ['PerplexityBot', /perplexitybot/i], ['Perplexity-User', /perplexity-user/i],
   ['Googlebot', /googlebot|google-inspectiontool|googleother/i], ['Bingbot', /bingbot|bingpreview/i],
   ['Applebot', /applebot/i], ['DuckDuckBot', /duckduckbot|duckassistbot/i], ['Amazonbot', /amazonbot/i],
-  ['Meta', /meta-externalagent|facebookexternalhit|facebookbot/i], ['Bytespider', /bytespider/i], ['CCBot', /ccbot/i],
+  ['Meta-AI', /meta-externalagent|meta-externalfetcher/i], ['Social', /facebookexternalhit|facebookbot/i], ['Bytespider', /bytespider/i], ['CCBot', /ccbot/i],
   ['YandexBot', /yandex/i], ['MistralAI', /mistralai/i], ['Social', /twitterbot|slackbot|linkedinbot|discordbot|telegrambot|whatsapp|iframely|embedly/i],
 ];
 export const AI_BOTS = new Set(['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-User', 'Claude-SearchBot',
-  'PerplexityBot', 'Perplexity-User', 'MistralAI', 'Bytespider', 'CCBot', 'Amazonbot', 'Meta']);
+  'PerplexityBot', 'Perplexity-User', 'MistralAI', 'Bytespider', 'CCBot', 'Amazonbot', 'Meta-AI']);
 
 /** User-agent → a coarse family name. Nothing else about the visitor is kept. */
 export function classify(ua) {
