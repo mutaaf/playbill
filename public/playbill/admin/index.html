@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Playbill · Discovery desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,800;1,6..96,500&family=Spectral:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f3ead8; --paper2: #ebe0c8; --ink: #1d1712; --mute: #6d6152; --rule: #c9b893;
+    --oxblood: #7a1f24; --gilt: #a8812d; --good: #2f6b3a; --warn: #9a5b12; --bad: #9b1c22;
+    --shadow: 0 1px 0 #fff8 inset, 0 10px 30px -18px #3b2a1599;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --paper: #17130f; --paper2: #201a14; --ink: #efe4cf; --mute: #a8997f; --rule: #4a3d2b;
+    --oxblood: #d9545b; --gilt: #d6a94a; --good: #6fbf7c; --warn: #e3a04a; --bad: #ef6a6f; --shadow: 0 10px 30px -18px #000;
+  } }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.5 Spectral, Georgia, serif;
+    background-image: radial-gradient(#0000000a 1px, transparent 1px); background-size: 4px 4px; min-height: 100vh; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px 80px; }
+  header.mast { text-align: center; padding: 34px 0 10px; border-bottom: 3px double var(--rule); position: relative; }
+  .kicker { font: 600 11px/1 'JetBrains Mono', monospace; letter-spacing: .32em; text-transform: uppercase; color: var(--gilt); }
+  h1 { font: 800 clamp(44px, 9vw, 92px)/.9 'Bodoni Moda', serif; margin: 10px 0 6px; letter-spacing: -.02em; }
+  h1 em { font-style: italic; font-weight: 500; color: var(--oxblood); }
+  .sub { font-style: italic; color: var(--mute); margin: 0 0 14px; }
+  nav { display: flex; justify-content: center; gap: 4px; flex-wrap: wrap; margin: 14px 0 26px; }
+  nav button { font: 600 12px 'JetBrains Mono', monospace; letter-spacing: .14em; text-transform: uppercase; background: none; color: var(--mute);
+    border: 0; border-bottom: 2px solid transparent; padding: 10px 14px; cursor: pointer; }
+  nav button[aria-selected="true"] { color: var(--ink); border-color: var(--oxblood); }
+  h2 { font: 800 30px/1.1 'Bodoni Moda', serif; margin: 34px 0 6px; }
+  h2 small { font: italic 400 16px Spectral, serif; color: var(--mute); margin-left: 8px; }
+  .orn { text-align: center; color: var(--gilt); letter-spacing: .6em; margin: 26px 0; }
+  .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+  .card { background: var(--paper2); border: 1px solid var(--rule); padding: 16px 18px; box-shadow: var(--shadow); position: relative; }
+  .card h3 { font: 800 21px/1.15 'Bodoni Moda', serif; margin: 0 0 2px; }
+  .mono, .num { font-family: 'JetBrains Mono', monospace; }
+  .num { font-size: 30px; font-weight: 600; line-height: 1; }
+  .lbl { font: 600 10px 'JetBrains Mono', monospace; letter-spacing: .2em; text-transform: uppercase; color: var(--mute); }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .stats > div { padding: 18px 12px; border-right: 1px solid var(--rule); }
+  .stats > div:last-child { border-right: 0; }
+  .row { display: flex; justify-content: space-between; gap: 10px; font-size: 14px; border-top: 1px dotted var(--rule); padding: 5px 0; }
+  .row span:last-child { font-family: 'JetBrains Mono', monospace; font-size: 13px; text-align: right; }
+  .pill { display: inline-block; font: 600 10px 'JetBrains Mono', monospace; letter-spacing: .1em; text-transform: uppercase; padding: 3px 7px; border: 1px solid currentColor; }
+  .high { color: var(--bad); } .medium { color: var(--warn); } .low { color: var(--mute); } .ok { color: var(--good); }
+  ol.opps { list-style: none; padding: 0; margin: 0; counter-reset: o; }
+  ol.opps li { counter-increment: o; display: grid; grid-template-columns: 44px 1fr; gap: 12px; padding: 14px 0; border-top: 1px solid var(--rule); }
+  ol.opps li::before { content: counter(o, upper-roman) "."; font: italic 500 22px 'Bodoni Moda', serif; color: var(--gilt); text-align: right; }
+  ol.opps b { font-weight: 600; }
+  ol.opps .act { font: 12px 'JetBrains Mono', monospace; color: var(--mute); margin-top: 4px; word-break: break-word; }
+  label { display: block; margin: 14px 0 4px; }
+  input[type=text], input[type=password], textarea, select { width: 100%; font: 15px Spectral, serif; color: var(--ink); background: var(--paper);
+    border: 1px solid var(--rule); padding: 9px 10px; border-radius: 0; }
+  textarea { min-height: 84px; resize: vertical; }
+  textarea.code { font: 13px/1.45 'JetBrains Mono', monospace; min-height: 150px; }
+  .count { float: right; font: 11px 'JetBrains Mono', monospace; color: var(--mute); }
+  .count.over { color: var(--bad); }
+  button.btn { font: 600 12px 'JetBrains Mono', monospace; letter-spacing: .12em; text-transform: uppercase; background: var(--ink); color: var(--paper);
+    border: 0; padding: 11px 16px; cursor: pointer; margin: 14px 8px 0 0; }
+  button.btn.ghost { background: none; color: var(--ink); border: 1px solid var(--ink); }
+  button.btn.red { background: var(--oxblood); color: #fff; }
+  button.btn:disabled { opacity: .5; cursor: wait; }
+  .serp { background: #fff; color: #202124; padding: 14px 16px; font: 14px/1.4 arial, sans-serif; border: 1px solid #dadce0; max-width: 620px; margin-top: 16px; }
+  .serp .u { color: #4d5156; font-size: 12px; } .serp .t { color: #1a0dab; font-size: 20px; margin: 3px 0; } .serp .d { color: #4d5156; }
+  .apps-list { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+  .apps-list button { font: 500 15px Spectral, serif; background: none; border: 1px solid var(--rule); color: var(--ink); padding: 6px 12px; cursor: pointer; }
+  .apps-list button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  @media (max-width: 760px) { .two { grid-template-columns: 1fr; } .stats > div { border-right: 0; border-bottom: 1px solid var(--rule); } }
+  .note { font-style: italic; color: var(--mute); font-size: 14px; }
+  .step { display: grid; grid-template-columns: 36px 1fr; gap: 14px; padding: 18px 0; border-top: 1px solid var(--rule); }
+  .step .n { font: 800 28px 'Bodoni Moda', serif; color: var(--oxblood); }
+  .step h3 { margin: 0 0 4px; font: 800 20px 'Bodoni Moda', serif; }
+  .toast { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--paper); padding: 10px 16px;
+    font: 13px 'JetBrains Mono', monospace; opacity: 0; transition: opacity .2s; pointer-events: none; max-width: calc(100% - 32px); }
+  .toast.on { opacity: 1; }
+  .login { max-width: 360px; margin: 60px auto; text-align: center; }
+  .hide { display: none !important; }
+  .bar { height: 6px; background: var(--paper); border: 1px solid var(--rule); margin-top: 6px; }
+  .bar i { display: block; height: 100%; background: var(--oxblood); }
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { animation: up .5s cubic-bezier(.2,.7,.2,1) both; }
+    @keyframes up { from { opacity: 0; transform: translateY(8px); } }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <div class="kicker">The mutaafaziz.com collection · discovery desk</div>
+    <h1>Play<em>bill</em></h1>
+    <p class="sub">How every app introduces itself to search engines and AI assistants.</p>
+  </header>
+
+  <section id="login" class="login hide">
+    <h2>Sign in</h2>
+    <p class="note">Same password as Marquee.</p>
+    <input id="pw" type="password" autocomplete="current-password" aria-label="Password">
+    <button class="btn" id="go">Enter</button>
+  </section>
+
+  <main id="app" class="hide">
+    <nav role="tablist">
+      <button role="tab" data-tab="program" aria-selected="true">Program</button>
+      <button role="tab" data-tab="catalog">Catalog</button>
+      <button role="tab" data-tab="setup">Setup</button>
+    </nav>
+
+    <section data-panel="program">
+      <div class="stats reveal" id="totals"></div>
+      <h2>Tonight's notes <small>what to change next, most valuable first</small></h2>
+      <ol class="opps" id="opps"></ol>
+      <div class="orn">✦ ✦ ✦</div>
+      <h2>The company <small>each app, last 28 days</small></h2>
+      <div class="grid" id="cards"></div>
+    </section>
+
+    <section data-panel="catalog" class="hide">
+      <h2>Catalog <small>edits go live on the next page view</small></h2>
+      <div class="apps-list" id="applist"></div>
+      <div id="draft" class="card hide" style="margin-bottom:16px"></div>
+      <div class="two">
+        <div>
+          <label>Title <span class="count" id="c-title"></span></label><input type="text" id="f-title">
+          <label>Description <span class="count" id="c-description"></span></label><textarea id="f-description"></textarea>
+          <div class="serp"><div class="u" id="s-u"></div><div class="t" id="s-t"></div><div class="d" id="s-d"></div></div>
+          <label>Summary <span class="note">(what an AI assistant would quote)</span></label><textarea id="f-summary" style="min-height:130px"></textarea>
+        </div>
+        <div>
+          <label>Target questions <span class="note">(one per line)</span></label><textarea id="f-intents" class="code"></textarea>
+          <label>Features <span class="note">(one per line)</span></label><textarea id="f-features" class="code"></textarea>
+          <label>FAQ <span class="note">(Q: … then A: …)</span></label><textarea id="f-faqs" class="code" style="min-height:220px"></textarea>
+          <label>Share image URL</label><input type="text" id="f-image">
+        </div>
+      </div>
+      <button class="btn" id="save">Save</button>
+      <a class="btn ghost" id="preview" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block">Open llms.txt</a>
+      <h2>Recent changes</h2>
+      <div id="changes"></div>
+    </section>
+
+    <section data-panel="setup" class="hide">
+      <h2>Setup <small>connect once, Playbill does the rest daily</small></h2>
+      <div class="step"><div class="n">I</div><div>
+        <h3>Google Search Console</h3>
+        <p>Rankings, clicks, and whether each page is indexed. Uses the same Google Cloud client as Marquee.</p>
+        <p class="note">Redirect URI to allow on the OAuth client: <span class="mono" id="redir"></span></p>
+        <div id="g-status" class="mono"></div>
+        <button class="btn" id="g-connect">Connect Search Console</button>
+        <button class="btn ghost" id="g-sync">Sync now</button>
+      </div></div>
+      <div class="step"><div class="n">II</div><div>
+        <h3>Bing Webmaster</h3>
+        <p>Bing's index feeds ChatGPT search and Copilot. Bing Webmaster Tools → Settings → API access → generate a key.</p>
+        <label>Bing API key</label><input type="password" id="k-bing_api_key" autocomplete="off">
+        <div id="b-status" class="mono"></div>
+        <button class="btn" data-save="bing_api_key">Save key</button><button class="btn ghost" id="b-sync">Sync now</button>
+      </div></div>
+      <div class="step"><div class="n">III</div><div>
+        <h3>IndexNow</h3>
+        <p>Pages that change are pushed to Bing and friends every morning automatically. Key file: <span class="mono" id="inkey"></span></p>
+        <div id="i-status" class="mono"></div>
+        <button class="btn ghost" id="i-ping">Ping every page now</button>
+      </div></div>
+      <div class="step"><div class="n">IV</div><div>
+        <h3>AI answer probe</h3>
+        <p>Each week Playbill asks ChatGPT, Perplexity and Claude a rotating sample of each app's target questions and records who gets cited. Paste any engines you want; each is optional.</p>
+        <label>OpenAI API key</label><input type="password" id="k-openai_api_key" autocomplete="off">
+        <label>Perplexity API key</label><input type="password" id="k-perplexity_api_key" autocomplete="off">
+        <label>Anthropic API key</label><input type="password" id="k-anthropic_api_key" autocomplete="off">
+        <label>Questions per app per week</label><select id="k-probe_per_app"><option>1</option><option selected>2</option><option>3</option></select>
+        <label><input type="checkbox" id="k-probe_enabled"> Run the weekly probe</label>
+        <div id="p-status" class="mono"></div>
+        <button class="btn" id="p-save">Save</button><button class="btn ghost" id="p-run">Run a batch now</button>
+      </div></div>
+      <button class="btn ghost" id="logout" style="margin-top:30px">Sign out</button>
+    </section>
+  </main>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const $ = (s) => document.querySelector(s);
+const API = '/playbill/api/admin/';
+let S = null, R = null, cur = null;
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const toast = (m) => { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('on'), 3200); };
+async function api(path, opts = {}) {
+  const r = await fetch(API + path, { ...opts, headers: { 'content-type': 'application/json' }, body: opts.body && JSON.stringify(opts.body) });
+  const j = await r.json().catch(() => ({}));
+  if (r.status === 401) { show(false); throw new Error('sign in'); }
+  if (!r.ok) throw new Error(j.error || r.status);
+  return j;
+}
+function show(on) { $('#login').classList.toggle('hide', on); $('#app').classList.toggle('hide', !on); }
+async function busy(btn, fn) { btn.disabled = true; try { await fn(); } catch (e) { toast(e.message); } finally { btn.disabled = false; } }
+
+$('#go').onclick = () => busy($('#go'), async () => { await api('login', { method: 'POST', body: { password: $('#pw').value } }); await load(); });
+$('#pw').onkeydown = (e) => e.key === 'Enter' && $('#go').click();
+$('#logout').onclick = async () => { await api('logout', { method: 'POST' }); show(false); };
+document.querySelectorAll('nav button').forEach((b) => b.onclick = () => tab(b.dataset.tab));
+function tab(t) {
+  document.querySelectorAll('nav button').forEach((b) => b.setAttribute('aria-selected', b.dataset.tab === t));
+  document.querySelectorAll('[data-panel]').forEach((p) => p.classList.toggle('hide', p.dataset.panel !== t));
+  history.replaceState(null, '', '#' + t);
+}
+
+async function load() {
+  [S, R] = await Promise.all([api('state'), api('report')]);
+  show(true);
+  renderProgram(); renderCatalog(); renderSetup();
+  tab((location.hash || '#program').slice(1));
+}
+
+function renderProgram() {
+  const t = R.totals, c = R.connections;
+  $('#totals').innerHTML = [
+    ['Google clicks', c.google ? t.clicks : '—'], ['Impressions', c.google ? t.impressions.toLocaleString() : '—'],
+    ['AI crawler visits', t.ai_crawls], ['Search crawler visits', t.search_crawls],
+  ].map(([l, v]) => `<div><div class="lbl">${l}</div><div class="num">${v}</div></div>`).join('');
+  $('#opps').innerHTML = R.opportunities.length ? R.opportunities.map((o) => `<li><div><span class="pill ${o.impact}">${o.impact}</span> <b>${esc(o.title)}</b><div>${esc(o.detail)}</div><div class="act">→ ${esc(o.action)}</div></div></li>`).join('')
+    : '<li><div>Nothing urgent. The house is in order.</div></li>';
+  $('#cards').innerHTML = R.apps.map((a, i) => {
+    const ans = a.answers;
+    return `<div class="card reveal" style="animation-delay:${i * 40}ms">
+      <div class="lbl">${esc(a.kind)}${a.audience === 'kids' ? ' · kids' : ''}</div>
+      <h3>${esc(a.name)}</h3>
+      <div class="row"><span>Google clicks · impressions</span><span>${a.search.clicks} · ${a.search.impressions}</span></div>
+      <div class="row"><span>Indexed</span><span class="${a.index ? (a.index.verdict === 'PASS' ? 'ok' : 'high') : ''}">${a.index ? esc(a.index.verdict || '?') : '—'}</span></div>
+      <div class="row"><span>AI · search crawls</span><span>${a.crawlers.ai} · ${a.crawlers.search}</span></div>
+      <div class="row"><span>AI answers citing it</span><span>${ans ? ans.share_pct + '% of ' + ans.asked : '—'}</span></div>
+      ${ans ? `<div class="bar"><i style="width:${ans.share_pct}%"></i></div>` : ''}
+      ${a.search.top_queries[0] ? `<div class="note" style="margin-top:8px">Top search: “${esc(a.search.top_queries[0].query)}” (pos ${a.search.top_queries[0].position})</div>` : ''}
+      ${a.draft_pending ? '<div class="pill medium" style="margin-top:8px">draft awaiting sign-off</div>' : ''}
+    </div>`;
+  }).join('');
+}
+
+const lines = (s) => s.split('\n').map((x) => x.trim()).filter(Boolean);
+const faqText = (f) => (f || []).map((x) => `Q: ${x.q}\nA: ${x.a}`).join('\n\n');
+const parseFaq = (s) => s.split(/\n\s*\n/).map((b) => ({ q: (b.match(/Q:\s*([\s\S]*?)(?:\nA:|$)/) || [])[1]?.trim(), a: (b.match(/A:\s*([\s\S]*)/) || [])[1]?.trim() })).filter((f) => f.q && f.a);
+function renderCatalog() {
+  cur = cur || S.apps[0].id;
+  $('#applist').innerHTML = S.apps.map((a) => `<button aria-pressed="${a.id === cur}" data-id="${a.id}">${esc(a.name)}${a._draft ? ' •' : ''}</button>`).join('');
+  $('#applist').querySelectorAll('button').forEach((b) => b.onclick = () => { cur = b.dataset.id; renderCatalog(); });
+  const a = S.apps.find((x) => x.id === cur);
+  $('#f-title').value = a.title; $('#f-description').value = a.description; $('#f-summary').value = a.summary || '';
+  $('#f-intents').value = (a.intents || []).join('\n'); $('#f-features').value = (a.features || []).join('\n');
+  $('#f-faqs').value = faqText(a.faqs); $('#f-image').value = a.image || '';
+  const u = new URL(a.url);
+  $('#preview').href = u.origin === location.origin ? `${u.pathname}llms.txt` : `/playbill/ext/${a.id}/llms.txt`;
+  const d = $('#draft');
+  if (a._draft) {
+    d.classList.remove('hide');
+    d.innerHTML = `<div class="lbl">Draft from Agency · kids app</div><h3>Waiting for your sign-off</h3>${Object.entries(a._draft).map(([k, v]) => `<div class="row"><span>${esc(k)}</span><span style="text-align:left;font-family:Spectral">${esc(typeof v === 'string' ? v : JSON.stringify(v))}</span></div>`).join('')}
+      <button class="btn" id="approve">Approve and publish</button><button class="btn ghost" id="reject">Discard</button>`;
+    $('#approve').onclick = () => busy($('#approve'), async () => { await api(`apps/${a.id}/approve`, { method: 'POST' }); toast('Published'); await load(); });
+    $('#reject').onclick = () => busy($('#reject'), async () => { await api(`apps/${a.id}/reject`, { method: 'POST' }); toast('Discarded'); await load(); });
+  } else d.classList.add('hide');
+  serp();
+  $('#changes').innerHTML = S.changes.length ? S.changes.map((c) => `<div class="row"><span>${esc(c.at.slice(0, 16).replace('T', ' '))} · ${esc(c.app_id)} · ${esc(c.by)}</span><span>${esc(c.fields)} — ${esc(c.status)}</span></div>`).join('') : '<p class="note">No edits yet.</p>';
+}
+function serp() {
+  const a = S.apps.find((x) => x.id === cur);
+  const t = $('#f-title').value, d = $('#f-description').value;
+  for (const [id, v, lo, hi] of [['title', t, 10, 65], ['description', d, 70, 170]]) { const c = $('#c-' + id); c.textContent = `${v.length}/${hi}`; c.classList.toggle('over', v.length > hi || v.length < lo); }
+  $('#s-u').textContent = a.url.replace('https://', '').replace(/\/$/, '').replace(/\//g, ' › ');
+  $('#s-t').textContent = t.length > 60 ? t.slice(0, 59) + '…' : t;
+  $('#s-d').textContent = d.length > 158 ? d.slice(0, 157) + '…' : d;
+}
+['#f-title', '#f-description'].forEach((s) => $(s).oninput = serp);
+$('#save').onclick = () => busy($('#save'), async () => {
+  const body = { title: $('#f-title').value, description: $('#f-description').value, summary: $('#f-summary').value,
+    intents: lines($('#f-intents').value), features: lines($('#f-features').value), faqs: parseFaq($('#f-faqs').value), image: $('#f-image').value.trim() || null };
+  const r = await api(`apps/${cur}`, { method: 'PUT', body });
+  toast(r.status === 'live' ? 'Live. IndexNow pinged.' : r.note || 'Saved'); await load(); tab('catalog');
+});
+
+function renderSetup() {
+  const s = S.settings;
+  $('#redir').textContent = S.redirect_uri;
+  $('#inkey').textContent = `${location.origin}/${S.indexnow_key}.txt`;
+  $('#g-status').innerHTML = s.google_connected ? `<span class="ok">● connected</span> ${esc(s.google_sites_found || 'no verified property yet')} · last sync ${esc(s.google_last_sync || 'never')}${s.google_last_error ? `<div class="high">${esc(s.google_last_error)}</div>` : ''}` : '<span class="low">○ not connected</span>';
+  $('#g-connect').textContent = s.google_connected ? 'Reconnect' : 'Connect Search Console';
+  $('#b-status').innerHTML = s.bing_api_key ? `<span class="ok">● key saved</span> · last sync ${esc(s.bing_last_sync || 'never')}${s.bing_last_error ? `<div class="high">${esc(s.bing_last_error)}</div>` : ''}` : '<span class="low">○ no key</span>';
+  for (const k of ['bing_api_key', 'openai_api_key', 'perplexity_api_key', 'anthropic_api_key']) { const el = $('#k-' + k); el.value = ''; el.placeholder = s[k] ? 'saved ••••••' : 'paste key'; }
+  $('#k-probe_per_app').value = s.probe_per_app || '2';
+  $('#k-probe_enabled').checked = !!s.probe_enabled;
+  let inl = null; try { inl = s.indexnow_last && JSON.parse(s.indexnow_last); } catch {}
+  $('#i-status').innerHTML = inl ? `last push ${esc(inl.at.slice(0, 16))} · ${inl.urls.length} URLs · ${esc(JSON.stringify(inl.result))}` : 'no automatic push yet (only changed pages are pushed)';
+  $('#p-status').innerHTML = s.probe_last_error ? `<span class="high">${esc(s.probe_last_error)}</span>` : (s.probe_enabled ? '<span class="ok">● weekly probe on</span>' : '<span class="low">○ off</span>');
+}
+$('#g-connect').onclick = () => busy($('#g-connect'), async () => { const r = await api('google/connect'); location.href = r.url; });
+$('#g-sync').onclick = () => busy($('#g-sync'), async () => { const r = await api('google/sync', { method: 'POST' }); toast(r.skipped || `Synced ${r.rows} rows from ${(r.sites || []).join(', ') || 'no verified property'}`); await load(); tab('setup'); });
+$('#b-sync').onclick = () => busy($('#b-sync'), async () => { const r = await api('bing/sync', { method: 'POST' }); toast(r.skipped || `Synced ${r.rows} queries`); await load(); tab('setup'); });
+$('#i-ping').onclick = () => busy($('#i-ping'), async () => { const r = await api('indexnow', { method: 'POST' }); toast(`Pushed ${r.urls} URLs: ${JSON.stringify(r.result)}`); });
+document.querySelectorAll('[data-save]').forEach((b) => b.onclick = () => busy(b, async () => {
+  const k = b.dataset.save, v = $('#k-' + k).value.trim(); if (!v) return toast('Paste the key first');
+  await api('settings', { method: 'PUT', body: { [k]: v } }); toast('Saved'); await load(); tab('setup');
+}));
+$('#p-save').onclick = () => busy($('#p-save'), async () => {
+  const body = { probe_per_app: $('#k-probe_per_app').value, probe_enabled: $('#k-probe_enabled').checked };
+  for (const k of ['openai_api_key', 'perplexity_api_key', 'anthropic_api_key']) { const v = $('#k-' + k).value.trim(); if (v) body[k] = v; }
+  await api('settings', { method: 'PUT', body }); toast('Saved'); await load(); tab('setup');
+});
+$('#p-run').onclick = () => busy($('#p-run'), async () => { const r = await api('probe', { method: 'POST' }); toast(r.skipped || `Asked ${r.ran}; ${r.left} left this week`); await load(); tab('setup'); });
+
+load().catch(() => show(false));
+</script>
+</body>
+</html>

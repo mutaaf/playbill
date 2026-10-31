@@ -1,0 +1,156 @@
+// Playbill: SEO + answer-engine optimization for every app at mutaafaziz.com (and 18-0.co).
+// Exact-path routes (front pages, llms.txt, robots, sitemap) beat each app's "mutaafaziz.com/<app>*" route,
+// so Playbill decorates front pages via service bindings without touching any app repo.
+// Query-string URLs ("/outatime/?play=quick") skip Playbill: route patterns can't match a query; the
+// canonical tag folds them into the clean URL. INDEXNOW_KEY is public by design (it's served as a file).
+{
+  "name": "playbill",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "workers_dev": true,
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": true
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "playbill",
+      "database_id": "0f85b039-c3da-41f5-8797-5fbf254cc882"
+    }
+  ],
+  "services": [
+    {
+      "binding": "SITE",
+      "service": "mutaafaziz-site"
+    },
+    {
+      "binding": "OUTATIME",
+      "service": "outatime-88"
+    },
+    {
+      "binding": "OPENAERO",
+      "service": "openaero-dfw"
+    },
+    {
+      "binding": "COLDGAS",
+      "service": "cold-gas"
+    },
+    {
+      "binding": "KIN",
+      "service": "kin"
+    },
+    {
+      "binding": "CHALKTALK",
+      "service": "chalk-talk"
+    },
+    {
+      "binding": "HEARTH",
+      "service": "hearth"
+    },
+    {
+      "binding": "LIBRARY",
+      "service": "library"
+    }
+  ],
+  "vars": {
+    "INDEXNOW_KEY": "fd6ac69bdc4ffe19ef0f922cc3d96bd1",
+    "GOOGLE_CLIENT_ID": "505032970151-ebjjcndt92hfh9nqrutpa6reh0cdb9ki.apps.googleusercontent.com"
+  },
+  "triggers": {
+    "crons": [
+      "23 6 * * *",
+      "41 * * * *"
+    ]
+  },
+  "routes": [
+    {
+      "pattern": "mutaafaziz.com/",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/outatime/",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/outatime/llms.txt",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/openaero/",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/openaero/llms.txt",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/coldgas/",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/coldgas/llms.txt",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/kin/",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/kin/llms.txt",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/chalktalk/",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/chalktalk/llms.txt",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/hearth/",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/hearth/llms.txt",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/library/",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/library/llms.txt",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/robots.txt",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/sitemap.xml",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/llms-full.txt",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/fd6ac69bdc4ffe19ef0f922cc3d96bd1.txt",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/playbill",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/playbill/*",
+      "zone_name": "mutaafaziz.com"
+    }
+  ]
+}

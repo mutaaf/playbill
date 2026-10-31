@@ -1,0 +1,17 @@
+{
+  "name": "playbill",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Playbill: SEO + answer-engine optimization for every app at mutaafaziz.com — catalog, edge-injected metadata, llms.txt, sitemaps, IndexNow, Search Console/Bing, and a weekly AI-citation probe.",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "dev": "wrangler dev",
+    "test": "vitest run",
+    "check": "vitest run && node -e \"JSON.parse(require('fs').readFileSync('catalog.json','utf8'))\"",
+    "deploy": "wrangler deploy",
+    "up": "npm install && wrangler dev"
+  },
+  "dependencies": { "@anthropic-ai/sdk": "^1.3.0" },
+  "devDependencies": { "vitest": "^4.1.11", "wrangler": "^4.151.2" }
+}

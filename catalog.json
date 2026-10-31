@@ -1,0 +1,883 @@
+[
+  {
+    "id": "site",
+    "name": "Mutaaf Aziz",
+    "url": "https://mutaafaziz.com/",
+    "kind": "site",
+    "schema_type": "ProfilePage",
+    "category": null,
+    "audience": "general",
+    "title": "Mutaaf Aziz: Founder of Digital Craft AI, Engineering Leader",
+    "description": "Personal site of Mutaaf Aziz, founder of Digital Craft AI and engineering leader in Dallas–Fort Worth: his work, AI agent fleet, games and apps.",
+    "summary": "mutaafaziz.com is the personal website of Mutaaf Aziz, founder of Digital Craft AI and an engineering leader in Dallas–Fort Worth, Texas. He is also a Senior Software Engineering Manager at Disney Entertainment & ESPN Technology, leading Watch Experiences, the backend services behind how fans stream ESPN. The site is a single-file website with six editions, edited by AI agents under a public operating manual (AGENTS.md). It documents his career, his autonomous coding-agent fleet, and the browser games and apps he builds, and publishes a plain-text brief for AI agents at mutaafaziz.com/llms.txt and a JSON Resume at mutaafaziz.com/resume.json.",
+    "genres": [
+      "personal website",
+      "portfolio",
+      "engineering leadership",
+      "AI agents"
+    ],
+    "platforms": [
+      "Web browser"
+    ],
+    "input": [
+      "keyboard",
+      "mouse",
+      "touch"
+    ],
+    "price": "free",
+    "features": [
+      "Six editions of the same site, opening on Mission Control (who he is, live metrics, where to go), plus Pro, 1996, 2006, 2026 and the old front door",
+      "A plain-text brief for AI agents at /llms.txt and a structured JSON Resume at /resume.json",
+      "schema.org Person data in the page head",
+      "A public operating manual (AGENTS.md) that the AI agents editing the site work under",
+      "An app launcher (⌘K, Ctrl+K or /) on every edition except the front door, linking his games and apps",
+      "A fleet scoreboard whose numbers are recounted nightly by a deterministic script and merged by a human"
+    ],
+    "intents": [
+      "mutaaf aziz",
+      "who is mutaaf aziz",
+      "mutaaf aziz digital craft ai",
+      "digital craft ai founder",
+      "mutaaf aziz espn",
+      "engineering leader dallas fort worth ai agents",
+      "engineering manager who runs autonomous ai coding agents",
+      "personal website edited by ai agents agents.md",
+      "website with llms.txt and json resume example",
+      "dallas fort worth cto director vp engineering ai native"
+    ],
+    "faqs": [
+      {
+        "q": "Who is Mutaaf Aziz?",
+        "a": "Mutaaf Aziz is the founder of Digital Craft AI, an AI company building systems for traditional industries, and an engineering leader in Dallas–Fort Worth, Texas. He is also a Senior Software Engineering Manager at Disney Entertainment & ESPN Technology, leading Watch Experiences."
+      },
+      {
+        "q": "What does Digital Craft AI do?",
+        "a": "Digital Craft AI builds AI systems for construction, real estate and events, such as lead responders, estimate generators, review management and voice agents. Its engineering runs on Mutaaf's agent fleet."
+      },
+      {
+        "q": "How do I contact Mutaaf Aziz?",
+        "a": "Email mutaaf.aziz@gmail.com, book time at calendly.com/mutaaf, or find him on LinkedIn (linkedin.com/in/mutaaf) and GitHub (github.com/mutaaf). He is open to Director, VP and CTO roles in Dallas–Fort Worth."
+      },
+      {
+        "q": "Is there a machine-readable version of the site for AI assistants?",
+        "a": "Yes. mutaafaziz.com/llms.txt is a plain-text brief for AI agents, and mutaafaziz.com/resume.json is a JSON Resume with open CORS. The page head also carries schema.org Person data."
+      },
+      {
+        "q": "What apps and games has he built?",
+        "a": "The site's launcher links OpenAero DFW, OUTATIME 88, COLD GAS, KIN, Hearth, Chalk Talk, the Leadership Library and 18-0, among others. All of them run in a web browser."
+      }
+    ],
+    "keywords": [
+      "Mutaaf Aziz",
+      "Digital Craft AI",
+      "engineering leader",
+      "Dallas–Fort Worth",
+      "AI agents",
+      "agent fleet",
+      "Claude Code",
+      "ESPN",
+      "fractional CTO",
+      "llms.txt"
+    ],
+    "image": "https://mutaafaziz.com/og.png",
+    "video": null,
+    "repo": null,
+    "released": "2026-07-30",
+    "updated": "2026-10-30",
+    "version": null,
+    "related": [
+      "library",
+      "openaero",
+      "coldgas"
+    ],
+    "extra_urls": [
+      "/work",
+      "/resume.json"
+    ]
+  },
+  {
+    "id": "outatime",
+    "name": "OUTATIME 88",
+    "url": "https://mutaafaziz.com/outatime/",
+    "kind": "game",
+    "schema_type": "VideoGame",
+    "category": "GameApplication",
+    "audience": "kids",
+    "title": "OUTATIME 88: Free Neon Time-Travel Racing Game in Browser",
+    "description": "Race five rivals over three laps in a neon arcade racer, hit 88 mph to jump eras, and race friends live. Free in your browser, no login, on phone or PC.",
+    "summary": "OUTATIME 88 is a free neon, 1980s-flavoured time-travel arcade racing game that runs in a web browser. You race five rivals over three laps, drift, boost and slam, and when you hit 88 mph the car jumps to another era, changing the world, music and palette. It has 2D and 3D views, a campaign ladder with medals, a daily challenge, a global leaderboard with three-letter initials, 11 original cars to earn, and live races with friends by link or QR code. There is no login and no personal data: a racer is a random id, and progress stays on the device. It is developed by three scheduled Claude Code agents, with CI gating every change, and is made by Mutaaf Aziz.",
+    "genres": [
+      "racing",
+      "arcade",
+      "time travel",
+      "synthwave"
+    ],
+    "platforms": [
+      "Web browser",
+      "Installable web app (PWA)"
+    ],
+    "input": [
+      "keyboard",
+      "touch",
+      "gamepad",
+      "tilt"
+    ],
+    "price": "free",
+    "features": [
+      "Hit 88 mph to time-warp between seven eras, each with its own palette and procedural synthwave music",
+      "Three-lap races against five named rivals, with a campaign ladder of bronze, silver and gold targets",
+      "Live races with friends by link or QR code, and Quick Race to join others or CPU cars",
+      "Global leaderboard (all-time, daily and weekly) with three-letter initials and server-checked scores",
+      "Daily challenge: one road and one twist a day, the same for everyone",
+      "11 original cars to earn, shown in a 3D garage, with per-car paint",
+      "A full 3D mode (three.js) alongside the 2D view, and a TV mode where phones become controllers",
+      "No login: siblings can switch racers on one device, and a code or QR moves a racer to another device"
+    ],
+    "intents": [
+      "outatime 88",
+      "free racing game for kids in browser no download",
+      "time travel racing game browser",
+      "neon synthwave arcade racer online free",
+      "racing game like outrun in browser",
+      "game where you hit 88 mph to time travel",
+      "multiplayer racing game kids can play with friends by link",
+      "racing game that works on ipad and phone browser",
+      "arcade racer with daily challenge and leaderboard no account",
+      "browser racing game with gamepad support",
+      "kids racing game without login or personal data"
+    ],
+    "faqs": [
+      {
+        "q": "Is OUTATIME 88 free?",
+        "a": "Yes. It is free to play in a web browser, with nothing to install and no account."
+      },
+      {
+        "q": "Does it work on phones and tablets?",
+        "a": "Yes. Touch controls work on phones and tablets in both orientations, tilt steering is optional, and it can be added to the home screen to run full screen. Keyboard and gamepad work on computers."
+      },
+      {
+        "q": "Does it collect my child's personal data?",
+        "a": "No login and no personal data. A racer is a random id issued on first visit, and the profile is three-letter initials, a car and progress. No names, emails, ages, device identifiers or location are collected, and IP addresses are used only briefly for rate limits and are not kept as identity."
+      },
+      {
+        "q": "Are there ads?",
+        "a": "Never during a race. In races the only sponsor boards are first-party, kid-safe images chosen by the road, not the player, and tapping them does nothing. Outside gameplay, Google ads tagged as child-directed may appear on the title and results screens, and the rewarded ad for 2× coins only plays if the player taps to watch it."
+      },
+      {
+        "q": "How do I race my friends?",
+        "a": "Tap RACE FRIENDS on the title screen to open a room, then share the link or show the QR code. Friends join in one tap, pick initials and a car, and everyone starts on the same countdown."
+      },
+      {
+        "q": "How do I move my racer to another device?",
+        "a": "Use a six-character link code or QR (valid for 10 minutes, single use), or a long-lived recovery code from Save my racer. No account is needed."
+      }
+    ],
+    "keywords": [
+      "racing game",
+      "browser game",
+      "time travel",
+      "arcade racer",
+      "synthwave",
+      "kids game",
+      "free online game",
+      "multiplayer racing",
+      "88 mph",
+      "no login"
+    ],
+    "image": "https://mutaafaziz.com/outatime/og.jpg",
+    "video": null,
+    "repo": "https://github.com/mutaaf/outatime-88",
+    "released": "2026-10-16",
+    "updated": "2026-10-31",
+    "version": null,
+    "related": [
+      "openaero",
+      "kin"
+    ],
+    "multiplayer": true
+  },
+  {
+    "id": "openaero",
+    "name": "OpenAero DFW",
+    "url": "https://mutaafaziz.com/openaero/",
+    "kind": "game",
+    "schema_type": "VideoGame",
+    "category": "GameApplication",
+    "audience": "kids",
+    "title": "OpenAero DFW: Free Browser Flight Simulator Over Dallas",
+    "description": "Fly a 737, Cessna 172 or F-16 over real Dallas–Fort Worth satellite imagery with today's weather, and land at DFW or Love Field. Free in your browser.",
+    "summary": "OpenAero DFW is a free flight simulator that runs in a web browser, flown over real satellite imagery of the Dallas–Fort Worth metroplex. You can fly a Boeing 737-800, a Cessna 172S or an F-16C with a six-degree-of-freedom flight model, over runways drawn from real survey data at DFW, Love Field, Alliance, Addison, Grand Prairie and Fort Worth Meacham. Today's METAR weather drives the wind, visibility and ceiling, and every landing is graded. Assist levels (Kid, Learner, Pilot) take a first-timer from a coached flight to the raw airplane over the same physics. There is no install and no account; it is made by Mutaaf Aziz and developed by three scheduled Claude Code agents.",
+    "genres": [
+      "flight simulator",
+      "simulation",
+      "aviation"
+    ],
+    "platforms": [
+      "Web browser",
+      "Installable web app (PWA)"
+    ],
+    "input": [
+      "keyboard",
+      "mouse",
+      "touch",
+      "gamepad"
+    ],
+    "price": "free",
+    "features": [
+      "Three aircraft: Boeing 737-800, Cessna 172S Skyhawk and F-16C",
+      "Real runways at KDFW, KDAL, KAFW, KADS, KGKY and KFTW, with PAPI and approach lights",
+      "Live METAR weather for the field you fly to, driving wind, gusts, visibility and ceiling",
+      "Every landing graded on touchdown rate, centreline, touchdown zone and flare, with personal bests",
+      "Kid, Learner and Pilot assist levels over the same physics, plus a first-flight coach",
+      "Missions and drills: approaches, landmark tours, go-around, stall, engine failure, rejected takeoff and windshear",
+      "Sun position from the actual time in Dallas, with runway and city lights at night",
+      "Touch stick and throttle on phones and tablets, plus keyboard, mouse yoke and gamepad"
+    ],
+    "intents": [
+      "openaero dfw",
+      "free flight simulator in browser",
+      "flight simulator dallas fort worth",
+      "fly over dallas in a browser flight sim",
+      "land a 737 at dfw airport game",
+      "flight simulator for kids free online",
+      "flight simulator that works on iphone and ipad browser",
+      "browser flight sim like microsoft flight simulator free",
+      "game where you land a plane at love field",
+      "flight simulator with real weather metar free",
+      "learn to land a plane game for beginners"
+    ],
+    "faqs": [
+      {
+        "q": "Is OpenAero DFW free?",
+        "a": "Yes. It runs free in a web browser, with no install and no account."
+      },
+      {
+        "q": "Does it work on a phone or iPad?",
+        "a": "Yes. Phones and tablets get an on-screen stick and throttle; computers use the keyboard, a mouse yoke or a gamepad. It can also be added to the home screen to open full screen."
+      },
+      {
+        "q": "Is it suitable for kids?",
+        "a": "Yes. The Kid assist level gives a forgiving, coached flight with envelope protection, and Kid mode shows no ads at all. Pilot mode is the raw airplane for experienced players."
+      },
+      {
+        "q": "Does it collect data or show ads?",
+        "a": "There is no account, and personal bests are kept on the device. The game has no analytics or trackers. Outside flight, Google ads tagged as child-directed may appear on the start screen and between flights; there are no ads in flight, and the rewarded ad is opt-in."
+      },
+      {
+        "q": "Is the weather real?",
+        "a": "Yes, when it says live: the sim uses today's METAR from aviationweather.gov for the airport you fly to, and shows a clear offline fallback when it can't reach it."
+      },
+      {
+        "q": "What can I fly?",
+        "a": "A Boeing 737-800, a Cessna 172S Skyhawk and an F-16C, from or into DFW, Love Field, Alliance, Addison, Grand Prairie and Fort Worth Meacham."
+      }
+    ],
+    "keywords": [
+      "flight simulator",
+      "browser game",
+      "Dallas",
+      "Fort Worth",
+      "DFW airport",
+      "Love Field",
+      "737",
+      "Cessna 172",
+      "F-16",
+      "real weather",
+      "kids game",
+      "free"
+    ],
+    "image": "https://mutaafaziz.com/playbill/og/openaero.jpg",
+    "video": null,
+    "repo": "https://github.com/mutaaf/openaero-dfw",
+    "released": "2026-10-16",
+    "updated": "2026-10-31",
+    "version": null,
+    "related": [
+      "outatime",
+      "kin"
+    ]
+  },
+  {
+    "id": "coldgas",
+    "name": "COLD GAS",
+    "url": "https://mutaafaziz.com/coldgas/",
+    "kind": "game",
+    "schema_type": "VideoGame",
+    "category": "GameApplication",
+    "audience": "general",
+    "title": "COLD GAS: Free 3D Roadster Stunt Jump Game in Your Browser",
+    "description": "Fire ten cold-gas thrusters to jump a roadster over parked cars, roll 360° and stick the landing while an AI panel judges it. Free in your browser.",
+    "summary": "COLD GAS is a free, minimal 3D stunt game that runs in a web browser. You drive a roadster up a ramp, fire ten cold-gas thrusters to clear a row of parked EVs, roll it 360° in the air, retro-burn and land on the mark. A deterministic scorer sets the numbers and a three-judge AI panel writes the commentary; the server verifies each run by replaying its input log before it reaches the leaderboard. It runs on a deterministic 6-DOF physics simulation at 240 Hz and supports keyboard, gamepad and touch. It is an independent fan game, not affiliated with any automaker, made by Mutaaf Aziz and maintained by AI agents behind CI gates.",
+    "genres": [
+      "stunt",
+      "driving",
+      "physics",
+      "arcade"
+    ],
+    "platforms": [
+      "Web browser",
+      "Installable web app (PWA)"
+    ],
+    "input": [
+      "keyboard",
+      "touch",
+      "gamepad"
+    ],
+    "price": "free",
+    "features": [
+      "Deterministic 6-DOF physics at 240 Hz with ten individually modelled cold-gas thrusters",
+      "Three flight tiers: Assist, Pro and Advanced (all ten valves by hand)",
+      "A three-judge AI panel; scores come from a deterministic scorer, the AI writes words only",
+      "Leaderboard runs verified on the server by replaying the input log",
+      "Several courses, including the Wall and the Lineup, with today's and all-time boards",
+      "Free Drive on real mountain and coastal roads, an endless seeded road, and a Sandbox for building ramps",
+      "Optional bring-your-own AI key (Anthropic, OpenAI, xAI or Gemini) for the judges",
+      "No accounts and no personal data; leaderboard names are three-letter initials"
+    ],
+    "intents": [
+      "cold gas game",
+      "roadster thruster jump game",
+      "car stunt jump game browser free",
+      "game where you jump a car over parked cars and do a barrel roll",
+      "physics car stunt game with ai judges",
+      "3d stunt driving game no download",
+      "roadster cold gas thrusters jump simulator",
+      "car flip landing game like trials in browser",
+      "free driving game real roads stelvio browser",
+      "stunt game with deterministic physics leaderboard"
+    ],
+    "faqs": [
+      {
+        "q": "Is COLD GAS free?",
+        "a": "Yes. It is free to play in a web browser with no account."
+      },
+      {
+        "q": "Does it work on my phone?",
+        "a": "Yes. Touch, keyboard and gamepad are all supported, and it can be installed to the home screen."
+      },
+      {
+        "q": "How are jumps scored?",
+        "a": "A deterministic scorer in the game sets every number, and three AI judges write the commentary. For the leaderboard, the server replays the run's input log and scores it again before accepting it."
+      },
+      {
+        "q": "Which AI writes the judges' lines?",
+        "a": "By default an open model on Cloudflare Workers AI. You can connect your own Anthropic, OpenAI, xAI or Gemini key; it stays in your browser and is sent only for the call it is used for, never stored."
+      },
+      {
+        "q": "Does it collect data or show ads?",
+        "a": "There are no accounts and no personal data; leaderboard entries use three-letter initials. Ads may appear on the title screen and between results, and a rewarded ad that asks the panel again is opt-in. No ads show during a run."
+      },
+      {
+        "q": "Is it affiliated with a car company?",
+        "a": "No. It is an independent fan game, and every vehicle and object in it is an original design with no brand names or logos."
+      }
+    ],
+    "keywords": [
+      "stunt game",
+      "car jump",
+      "roadster",
+      "thrusters",
+      "physics game",
+      "browser game",
+      "3D",
+      "AI judges",
+      "free",
+      "leaderboard"
+    ],
+    "image": "https://mutaafaziz.com/coldgas/og.png",
+    "video": null,
+    "repo": "https://github.com/mutaaf/cold-gas",
+    "released": "2026-10-19",
+    "updated": "2026-10-31",
+    "version": "0.10.0",
+    "related": [
+      "outatime",
+      "openaero",
+      "18-0"
+    ]
+  },
+  {
+    "id": "kin",
+    "name": "KIN",
+    "url": "https://mutaafaziz.com/kin/",
+    "kind": "game",
+    "schema_type": "VideoGame",
+    "category": "GameApplication",
+    "audience": "kids",
+    "title": "KIN: Virtual Pet That Hops Between Screens, Free in Browser",
+    "description": "Hatch a tiny creature that lives under your real sky, care for it, then slide a finger across two phones to send it to a friend's screen. Free, no signup.",
+    "summary": "KIN is a free virtual-pet game that runs in a web browser, including Safari on iPhone and iPad. A tiny, original creature hatches from a cocoon with no signup and lives in a small diorama that follows your real time of day, sun angle, temperature, wind, rain and snow. You can pet, feed, bathe, brush and play fetch with it, and it keeps a memory book on the device. Put two phones or tablets side by side and slide one finger from one screen onto the other to link them with no QR code, and your KIN hops onto your friend's screen. Native iPhone and iPad builds exist for TestFlight testing; KIN is not on the App Store. It is made by Mutaaf Aziz.",
+    "genres": [
+      "virtual pet",
+      "creature",
+      "social",
+      "casual"
+    ],
+    "platforms": [
+      "Web browser"
+    ],
+    "input": [
+      "touch",
+      "mouse"
+    ],
+    "price": "free",
+    "features": [
+      "Hatch a creature from a cocoon with no account or signup",
+      "A live sky that follows your real time of day, sun, temperature, wind, rain and snow",
+      "Care and play: pet, feed, bath, brush, throw-and-fetch, tuck in, a garden, tricks and collectibles",
+      "Slide one finger across two side-by-side screens to link them, with no QR code, camera or microphone",
+      "Your KIN hops onto a friend's screen, and their KIN reacts in its own way; two browser windows work too",
+      "A memory book of visits and moments, kept on the device",
+      "A Think button that asks an AI director (a free edge model, or your own Claude, OpenAI, xAI or Gemini key)"
+    ],
+    "intents": [
+      "kin creature game",
+      "mykin virtual pet",
+      "virtual pet game in browser free no signup",
+      "virtual pet that moves between two phones",
+      "game where your pet jumps from one screen to another",
+      "tamagotchi like game for kids in browser",
+      "virtual pet with real weather",
+      "pet game for ipad safari no download",
+      "creature game you share with a friend side by side",
+      "kids virtual pet no account no ads in app"
+    ],
+    "faqs": [
+      {
+        "q": "Is KIN free?",
+        "a": "Yes. It is free in a web browser, with no account and no signup."
+      },
+      {
+        "q": "Does it work on iPhone and iPad?",
+        "a": "Yes, in Safari and other browsers. Native iPhone and iPad builds exist for TestFlight testing, but KIN is not on the App Store."
+      },
+      {
+        "q": "How do I send my KIN to a friend's screen?",
+        "a": "Open KIN on both devices, put them side by side and slide one finger off one screen onto the other. That links them with no QR code, and your KIN can then hop across. Two browser windows on one computer work too."
+      },
+      {
+        "q": "Does KIN collect data or use my location?",
+        "a": "There is no account, and your KIN and its memory book are kept on the device. Location starts coarse, from your timezone, with no permission prompt; precise location is opt-in and rounded to about 11 km before it is used to look up the weather."
+      },
+      {
+        "q": "Are there ads in KIN?",
+        "a": "No ads in the app, over the creature or in the iPhone/iPad build. The only ad slot is one child-directed banner at the foot of the web landing page (/kin/about/), limited to kid-safe sponsors that never click out."
+      },
+      {
+        "q": "Is KIN safe for kids?",
+        "a": "KIN has no chat, no accounts and no in-app purchases, and linking only happens when someone makes the swipe gesture between two screens."
+      }
+    ],
+    "keywords": [
+      "virtual pet",
+      "creature game",
+      "kids game",
+      "browser game",
+      "two screens",
+      "real weather",
+      "iPad",
+      "no signup",
+      "free",
+      "KIN"
+    ],
+    "image": "https://mutaafaziz.com/playbill/og/kin.jpg",
+    "video": null,
+    "repo": "https://github.com/mutaaf/kin",
+    "released": "2026-10-22",
+    "updated": "2026-10-30",
+    "version": null,
+    "related": [
+      "outatime",
+      "openaero"
+    ],
+    "extra_urls": [
+      "/kin/about/"
+    ]
+  },
+  {
+    "id": "chalktalk",
+    "name": "Chalk Talk",
+    "url": "https://mutaafaziz.com/chalktalk/",
+    "kind": "app",
+    "schema_type": "WebApplication",
+    "category": "SportsApplication",
+    "audience": "general",
+    "title": "Chalk Talk: Free Voice Play Drawing App for Youth Coaches",
+    "description": "Say a play out loud or sketch it and watch it animate: X's and O's for youth basketball, flag football and soccer coaches. Free in your browser, no signup.",
+    "summary": "Chalk Talk is a free web app for youth coaches: you say a play out loud, or sketch it, and it draws and animates the play in light. It covers basketball, flag football (5v5 and 7v7) and youth soccer (7v7 and 9v9). It has a concept library for each sport with kid-friendly explanations, and football tools including the route tree, Man and Cover 1 to 4 coverages, and the quarterback's reads. An AI can clean up a sketch, name the concept and suggest improvements; a free AI is included within daily limits, or coaches can bring their own Claude or OpenAI key, which stays in the browser. It is open source (MIT) and made by Mutaaf Aziz.",
+    "genres": [
+      "coaching",
+      "playbook",
+      "sports strategy"
+    ],
+    "platforms": [
+      "Web browser",
+      "Installable web app (PWA)"
+    ],
+    "input": [
+      "voice",
+      "touch",
+      "mouse",
+      "keyboard"
+    ],
+    "price": "free",
+    "features": [
+      "Say a play out loud or sketch it on the field, and it animates at once",
+      "Basketball, flag football 5v5 and 7v7, and youth soccer 7v7 and 9v9",
+      "A concept library per sport with kid-friendly explanations and cues to shout",
+      "Football route tree, Man and Cover 1–4 coverages, and half- or full-field QB reads",
+      "AI that names a sketched concept, proposes a clean version and gives coaching suggestions",
+      "Presenter mode for AirPlay or Cast, and vertical video export for Shorts and Reels",
+      "CourtIQ / FieldIQ: a decision game for players, with nicknames and scores kept on the device",
+      "Voice commands work offline, and corrections are learned on the device"
+    ],
+    "intents": [
+      "chalk talk app",
+      "basketball play drawing app free",
+      "flag football play designer 7v7 free",
+      "draw plays by voice app for coaches",
+      "youth basketball whiteboard app animated plays",
+      "flag football playbook maker 5v5 online",
+      "app that animates basketball plays from a sketch",
+      "youth soccer play diagram tool 7v7 9v9",
+      "free coaching board app like coach's eye for plays",
+      "cover 2 vs cover 3 explained for kids flag football",
+      "how to teach pick and roll to kids animated"
+    ],
+    "faqs": [
+      {
+        "q": "Is Chalk Talk free?",
+        "a": "Yes. It is free in a web browser with no signup. A free AI is included within daily limits; you can add your own Claude or OpenAI key for more."
+      },
+      {
+        "q": "Which sports does it support?",
+        "a": "Basketball, flag football in 5v5 and 7v7, and youth soccer in 7v7 and 9v9."
+      },
+      {
+        "q": "How do I draw a play?",
+        "a": "Either say it, for example \"1 dribbles to the right wing, 5 sets the ball screen and rolls\", or tap the field to drop players and drag from a player to draw what they do. The play animates right away."
+      },
+      {
+        "q": "Does it work on a phone or tablet?",
+        "a": "Yes. It runs in mobile and desktop browsers and can be installed to the home screen. Presenter mode goes full screen for AirPlay, Cast or screen mirroring."
+      },
+      {
+        "q": "What happens to my data and API key?",
+        "a": "Your own key is kept in the browser and sent only to its provider. Player names stay on the device; the free AI receives only the X's and O's. Anonymous, cookieless usage counts are collected without storing IPs, and one ad banner may appear at the foot of the Plays list."
+      },
+      {
+        "q": "Is it open source?",
+        "a": "Yes, it is MIT-licensed at github.com/mutaaf/chalk-talk and can be embedded in another app with its mount() API."
+      }
+    ],
+    "keywords": [
+      "coaching app",
+      "play diagram",
+      "basketball plays",
+      "flag football",
+      "youth soccer",
+      "voice",
+      "whiteboard",
+      "playbook",
+      "youth sports",
+      "free"
+    ],
+    "image": "https://mutaafaziz.com/playbill/og/chalktalk.jpg",
+    "video": null,
+    "repo": "https://github.com/mutaaf/chalk-talk",
+    "released": "2026-10-30",
+    "updated": "2026-10-31",
+    "version": "v0.30.0",
+    "related": [
+      "18-0",
+      "library"
+    ]
+  },
+  {
+    "id": "hearth",
+    "name": "Hearth",
+    "url": "https://mutaafaziz.com/hearth/",
+    "kind": "app",
+    "schema_type": "SoftwareApplication",
+    "category": "UtilitiesApplication",
+    "audience": "general",
+    "title": "Hearth: Free Open-Source Universal TV Remote for Your Phone",
+    "description": "Hearth finds the LG, Samsung, Roku, Google TV and Apple TV devices on your Wi-Fi and turns every phone into an ad-free remote. Open source, no account.",
+    "summary": "Hearth is an open-source universal TV remote that finds the LG, Samsung, Roku, Google TV and Apple TV devices on your home Wi-Fi and gives every phone in the house a fast remote. It runs on an always-on computer in your home (such as a Mac mini, an old laptop or a Raspberry Pi) with Node.js, and any phone or browser on the same Wi-Fi opens it, with no accounts, codes or cloud in between. Features include a swipe pad, volume, an app shelf, inputs, messages on screen, opening an app on every TV at once, and one button that turns every TV off. A public demo with pretend TVs runs at mutaafaziz.com/hearth/demo/, and an iPhone app is described as coming soon to the App Store. It is MIT-licensed and made by Mutaaf Aziz.",
+    "genres": [
+      "TV remote",
+      "smart home",
+      "home network"
+    ],
+    "platforms": [
+      "Web browser",
+      "Self-hosted (Node.js on macOS, Linux or Raspberry Pi)"
+    ],
+    "input": [
+      "touch"
+    ],
+    "price": "free",
+    "features": [
+      "Finds LG webOS, Samsung Tizen, Roku, Google TV / Android TV and Apple TV devices on your Wi-Fi",
+      "Every phone in the house becomes a remote: D-pad, swipe pad, volume, apps and inputs",
+      "Hold an app to open it on every TV at once, waking TVs that are off",
+      "One long-press turns every TV off",
+      "Wake TVs from off with Wake-on-LAN on supported models",
+      "Messages on screen (LG), and live status of what each TV is doing",
+      "Three looks (Aurora, Classic, 8-bit), each in light or dark",
+      "Runs on your home network with no account or cloud; public demo with pretend TVs"
+    ],
+    "intents": [
+      "hearth tv remote",
+      "universal tv remote app for lg and samsung",
+      "control all tvs in the house from one phone",
+      "open source tv remote self hosted",
+      "turn off every tv in the house at once",
+      "roku lg samsung apple tv remote one app",
+      "ad free tv remote app no account",
+      "web based tv remote on local wifi",
+      "remote app like logitech harmony for phones free",
+      "open youtube tv on every tv at once"
+    ],
+    "faqs": [
+      {
+        "q": "Is Hearth free?",
+        "a": "Yes. Hearth is open source (MIT) and free to run on your own computer. An iPhone app is described as coming soon to the App Store, with the first TV free."
+      },
+      {
+        "q": "Which TVs does it work with?",
+        "a": "LG webOS (2014+), Samsung Tizen (2016+), Roku players and TVs, Google TV / Android TV (over Cast, with a limited set of controls), and Apple TV (tvOS 15+). The README has a full table of what works on each."
+      },
+      {
+        "q": "How do I set it up?",
+        "a": "Install Node.js 20.19 or newer on a computer that's usually on, run npm run up in the hearth folder, then open the link it prints on a phone on the same Wi-Fi and follow the setup screens."
+      },
+      {
+        "q": "Does Hearth send my data to the cloud?",
+        "a": "Your TVs, pairing keys and settings stay on your home network. Hearth talks to TVs directly on your Wi-Fi with no account. Optional features such as connection help or reading a power bill send only limited, scrubbed details, and you see them first."
+      },
+      {
+        "q": "Does Hearth show ads?",
+        "a": "The Hearth on your home network and the Hearth app never show ads. Only the public demo on mutaafaziz.com, with pretend TVs, shows a small banner under it."
+      },
+      {
+        "q": "Can I try it without installing anything?",
+        "a": "Yes. The demo at mutaafaziz.com/hearth/demo/ runs the real interface against pretend TVs."
+      }
+    ],
+    "keywords": [
+      "TV remote",
+      "universal remote",
+      "LG",
+      "Samsung",
+      "Roku",
+      "Google TV",
+      "Apple TV",
+      "smart TV",
+      "open source",
+      "self-hosted",
+      "home network",
+      "no ads"
+    ],
+    "image": "https://mutaafaziz.com/playbill/og/hearth.jpg",
+    "video": null,
+    "repo": "https://github.com/mutaaf/hearth",
+    "released": "2026-10-21",
+    "updated": "2026-10-31",
+    "version": "0.15.0",
+    "related": [
+      "chalktalk",
+      "library"
+    ],
+    "extra_urls": [
+      "/hearth/demo/"
+    ]
+  },
+  {
+    "id": "library",
+    "name": "The Leadership Library",
+    "url": "https://mutaafaziz.com/library/",
+    "kind": "collection",
+    "schema_type": "CollectionPage",
+    "category": null,
+    "audience": "general",
+    "title": "The Leadership Library: Engineering Leadership Book Notes",
+    "description": "Mutaaf Aziz's shelf of engineering leadership books, from The Manager's Path to Accelerate, with labelled summaries, his ratings and his own reflections.",
+    "summary": "The Leadership Library is Mutaaf Aziz's collection of books on engineering leadership, at mutaafaziz.com/library. It covers 11 books, including The Manager's Path, An Elegant Puzzle, Peopleware, Extreme Programming Explained, The Five Dysfunctions of a Team, Drive, Radical Candor, Clean Code and Accelerate. Each book has a labelled summary of its argument, and the owner's own interpretation, applications, critique and dated reflections are added as he writes them; every block says whose claim it is. It is static HTML that works without JavaScript, and on the iPhone Duo and other foldables it becomes a two-page book. The code is MIT-licensed.",
+    "genres": [
+      "book notes",
+      "engineering leadership",
+      "management"
+    ],
+    "platforms": [
+      "Web browser"
+    ],
+    "input": [
+      "touch",
+      "mouse",
+      "keyboard"
+    ],
+    "price": "free",
+    "features": [
+      "11 engineering leadership books, each with a labelled summary of its argument",
+      "Every block is labelled as the book's argument, the owner's interpretation, application or critique",
+      "The owner's own ratings and dated reflections, added as he writes them",
+      "Book pages that work without JavaScript",
+      "On the iPhone Duo it becomes a book: one page closed, a two-page spread open",
+      "Foldable postures supported, including a half-folded tabletop layout"
+    ],
+    "intents": [
+      "leadership library mutaaf aziz",
+      "best books for engineering managers",
+      "engineering leadership reading list",
+      "the manager's path summary and takeaways",
+      "an elegant puzzle will larson summary",
+      "books every new engineering manager should read",
+      "peopleware summary for software managers",
+      "accelerate book summary devops metrics",
+      "radical candor summary for tech leads",
+      "engineering manager book notes with reflections"
+    ],
+    "faqs": [
+      {
+        "q": "What is the Leadership Library?",
+        "a": "It is Mutaaf Aziz's collection of the books on engineering leadership he keeps coming back to, each with a labelled summary of its argument and his own notes added as he writes them."
+      },
+      {
+        "q": "Which books are in it?",
+        "a": "Eleven, including The Manager's Path, An Elegant Puzzle, Become an Effective Software Engineering Manager, Peopleware, Extreme Programming Explained, The Five Dysfunctions of a Team, Drive, Radical Candor, The 48 Laws of Power, Clean Code and Accelerate."
+      },
+      {
+        "q": "Are the summaries written by AI?",
+        "a": "A summary of a book's argument that an assistant drafted is marked as such on the page. Personal content, such as ratings and reflections, is written only by the owner."
+      },
+      {
+        "q": "Is it free to read?",
+        "a": "Yes. Every page is free to read in a browser, and works without JavaScript. Ad banners may appear on the home and book pages, served by the site's own ad server."
+      },
+      {
+        "q": "Does it work on foldable phones?",
+        "a": "Yes. On the iPhone Duo it reads as a book, one page closed and a two-page spread open, and half-folded foldables get a tabletop layout."
+      }
+    ],
+    "keywords": [
+      "engineering leadership",
+      "book summaries",
+      "management books",
+      "reading list",
+      "The Manager's Path",
+      "An Elegant Puzzle",
+      "Peopleware",
+      "Accelerate",
+      "Radical Candor",
+      "Mutaaf Aziz"
+    ],
+    "image": "https://mutaafaziz.com/playbill/og/library.jpg",
+    "video": null,
+    "repo": "https://github.com/mutaaf/library",
+    "released": "2026-10-22",
+    "updated": "2026-10-30",
+    "version": null,
+    "related": [
+      "site",
+      "chalktalk"
+    ]
+  },
+  {
+    "id": "18-0",
+    "name": "18-0",
+    "url": "https://18-0.co/",
+    "kind": "game",
+    "schema_type": "VideoGame",
+    "category": "GameApplication",
+    "audience": "general",
+    "title": "18-0: Pro Football History Roster Game, Free in Browser",
+    "description": "Spin a franchise and an era, take one real player season per spin, fill seven slots, and see your 18-game record from 0-18 to 18-0. Free in your browser.",
+    "summary": "18-0 is a free pro football history game that runs in a web browser at 18-0.co. Each spin lands on a franchise and an era; you take exactly one player season from it, fill seven slots (a quarterback, two running backs, two receivers, a tight end and a team defense), and get a deterministic rating mapped to an 18-game record from 0-18 to 18-0. Every card is a real season from 1980 to 2025, rated against its own era, with 4,872 rated seasons across 218 franchise-era combinations built from nflverse data. The same roster always earns the same record, and ranked seasons are scored on the server. It is open source (MIT); a public TestFlight beta exists for iPhone and iPad, and no account is required to play.",
+    "genres": [
+      "sports",
+      "football",
+      "strategy",
+      "trivia"
+    ],
+    "platforms": [
+      "Web browser",
+      "Installable web app (PWA)"
+    ],
+    "input": [
+      "touch",
+      "mouse",
+      "keyboard"
+    ],
+    "price": "free",
+    "features": [
+      "Spin a franchise and an era, take one player season per spin, and fill seven slots",
+      "4,872 real seasons from 1980 to 2025, each rated against its own era",
+      "Deterministic scoring: the same roster always earns the same 18-game record",
+      "Perfection gates: an 18-0 season needs no weak slot, and the game names the blocker",
+      "Modes: Scout (stats, no ratings), GM (names only), Rookie, and Gameday on real NFL gamedays",
+      "Leaderboards scored on the server; runs using the three-finger-spin cheat are flagged and excluded",
+      "Plays offline once installed, and no account is required"
+    ],
+    "intents": [
+      "18-0 game",
+      "18-0 football roster game",
+      "build the perfect nfl roster game",
+      "football history draft game browser",
+      "game where you spin for an nfl team and era and pick one player",
+      "nfl roster builder game like immaculate grid",
+      "can you go 18-0 football game",
+      "best nfl seasons rated by era game",
+      "free football strategy game no account",
+      "nfl gameday mini game leaderboard"
+    ],
+    "faqs": [
+      {
+        "q": "Is 18-0 free?",
+        "a": "Yes. It is free to play in a web browser at 18-0.co, and no account is required."
+      },
+      {
+        "q": "How does a game work?",
+        "a": "Spin for a franchise and an era, take exactly one player from it, and repeat until seven slots are filled: a quarterback, two running backs, two receivers, a tight end and a team defense. The roster is rated and mapped to an 18-game record."
+      },
+      {
+        "q": "How often does someone go 18-0?",
+        "a": "Measured against the real dataset over 400,000 games, 18-0 lands about once in 6,000 games and 17-1 about once in 49."
+      },
+      {
+        "q": "Are the players and stats real?",
+        "a": "Yes. Every card is a real regular season from 1980 to 2025, built from nflverse data and licensed season tables, and rated against its own era. Franchises are named for the city they play in now."
+      },
+      {
+        "q": "Is there an iPhone app?",
+        "a": "A public TestFlight beta for iPhone and iPad is linked from the project's README. On any device, the web version can be installed from the browser and plays offline."
+      },
+      {
+        "q": "Does 18-0 collect data or show ads?",
+        "a": "No account is needed; signing in is optional so ranked seasons can follow you. The game uses PostHog product analytics, and the web build may show display ads on the results screen."
+      }
+    ],
+    "keywords": [
+      "football game",
+      "NFL history",
+      "roster builder",
+      "sports trivia",
+      "fantasy football",
+      "browser game",
+      "18-0",
+      "perfect season",
+      "free",
+      "leaderboard"
+    ],
+    "image": "https://18-0.co/og.png",
+    "video": null,
+    "repo": "https://github.com/mutaaf/18-0",
+    "released": "2026-09-01",
+    "updated": "2026-10-30",
+    "version": null,
+    "related": [
+      "chalktalk",
+      "coldgas"
+    ]
+  }
+]
