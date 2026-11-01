@@ -52,7 +52,8 @@ export async function syncGoogle(db, env = {}) {
   const apps = await loadApps(db, { fresh: true });
   const end = new Date(Date.now() - 2 * 864e5), start = new Date(+end - 27 * 864e5);
   const listed = (await gfetch(at, `${GSC}/sites`)).siteEntry || [];
-  const owned = sites(s).filter((x) => listed.some((e) => e.siteUrl === x));
+  // A property added but not yet verified is listed as siteUnverifiedUser; it can't be read.
+  const owned = sites(s).filter((x) => listed.some((e) => e.siteUrl === x && e.permissionLevel !== 'siteUnverifiedUser'));
   const stmts = [db.prepare("DELETE FROM queries WHERE source = 'google'")];
   let rows = 0;
   for (const site of owned) {
