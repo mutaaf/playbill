@@ -151,10 +151,18 @@ async function freshness(env) {
     if (r.html_hash) changed.push(a.url);
   }
   invalidate();
+  // Catalog edits queue their URLs here; they go out with the page changes in one daily batch.
+  const s = await getSettings(env.DB);
+  let queued = [];
+  try { queued = JSON.parse(s.indexnow_queue || '[]'); } catch {}
+  for (const u of queued) if (!changed.includes(u)) changed.push(u);
   if (changed.length) {
     const apps = await loadApps(env.DB, { fresh: true });
     const urls = [...changed, ...changed.flatMap((u) => { const a = apps.find((x) => x.url === u); return a && pathOf(a) ? [`${ORIGIN}${pathOf(a)}llms.txt`] : []; })];
-    await setSetting(env.DB, 'indexnow_last', JSON.stringify({ at: new Date().toISOString(), urls, result: await indexNow(env, urls) }));
+    const result = await indexNow(env, urls);
+    await setSetting(env.DB, 'indexnow_last', JSON.stringify({ at: new Date().toISOString(), urls, result }));
+    // Keep the queue if IndexNow throttled us (429); tomorrow's run retries it.
+    if (Object.values(result).every((st) => st < 300)) await setSetting(env.DB, 'indexnow_queue', '[]');
   }
   return changed;
 }
@@ -227,7 +235,7 @@ async function admin(env, req, url, route, ctx) {
         .bind(JSON.stringify({ ...data, ...draft }), new Date().toISOString(), 'operator', a).run();
       await logChange(db, a, 'operator', Object.keys(draft), 'approved');
       invalidate();
-      ctx.waitUntil(indexNow(env, [data.url]).catch(() => {}));
+      ctx.waitUntil(enqueue(env.DB, data.url));
       return json({ ok: true });
     }
     if (b === 'reject' && req.method === 'POST') {
@@ -249,7 +257,7 @@ async function admin(env, req, url, route, ctx) {
         .bind(JSON.stringify({ ...data, ...patch }), new Date().toISOString(), who, a).run();
       await logChange(db, a, who, Object.keys(patch), 'live');
       invalidate();
-      ctx.waitUntil(indexNow(env, [data.url]).catch(() => {}));
+      ctx.waitUntil(enqueue(env.DB, data.url));
       return json({ ok: true, status: 'live' });
     }
   }
@@ -294,6 +302,14 @@ async function admin(env, req, url, route, ctx) {
     return json(await probeChunk(db, 12));
   }
   return json({ error: 'not found' }, { status: 404 });
+}
+
+async function enqueue(db, url) {
+  const s = await getSettings(db);
+  let q = [];
+  try { q = JSON.parse(s.indexnow_queue || '[]'); } catch {}
+  if (!q.includes(url)) q.push(url);
+  await setSetting(db, 'indexnow_queue', JSON.stringify(q));
 }
 
 async function logChange(db, app, by, fields, status) {

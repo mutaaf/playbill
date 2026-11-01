@@ -275,7 +275,7 @@ $('#save').onclick = () => busy($('#save'), async () => {
   const body = { title: $('#f-title').value, description: $('#f-description').value, summary: $('#f-summary').value,
     intents: lines($('#f-intents').value), features: lines($('#f-features').value), faqs: parseFaq($('#f-faqs').value), image: $('#f-image').value.trim() || null };
   const r = await api(`apps/${cur}`, { method: 'PUT', body });
-  toast(r.status === 'live' ? 'Live. IndexNow pinged.' : r.note || 'Saved'); await load(); tab('catalog');
+  toast(r.status === 'live' ? 'Live. Queued for the morning IndexNow push.' : r.note || 'Saved'); await load(); tab('catalog');
 });
 
 function renderSetup() {
