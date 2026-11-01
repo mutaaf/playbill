@@ -66,7 +66,7 @@ export default {
     }
     // Daily: notice which pages changed, tell IndexNow, refresh Google + Bing data.
     try { await freshness(env); } catch (e) { await setSetting(env.DB, 'indexnow_last_error', String(e.message || e)); }
-    try { await syncGoogle(env.DB); } catch (e) { await setSetting(env.DB, 'google_last_error', String(e.message || e)); }
+    try { await syncGoogle(env.DB, env); } catch (e) { await setSetting(env.DB, 'google_last_error', String(e.message || e)); }
     try { await syncBing(env.DB); } catch (e) { await setSetting(env.DB, 'bing_last_error', String(e.message || e)); }
   },
 };
@@ -169,7 +169,7 @@ async function googleCallback(env, url) {
   if (url.searchParams.get('error')) return new Response(`Google said: ${url.searchParams.get('error')}. Try Connect again.`, { status: 400 });
   try {
     await exchangeCode(env.DB, { ...s, google_client_secret: s.google_client_secret || env.GOOGLE_CLIENT_SECRET }, url.origin, url.searchParams.get('code'));
-    await syncGoogle(env.DB).catch((e) => setSetting(env.DB, 'google_last_error', String(e.message || e)));
+    await syncGoogle(env.DB, env).catch((e) => setSetting(env.DB, 'google_last_error', String(e.message || e)));
     return Response.redirect(`${url.origin}/playbill/admin/#setup`, 302);
   } catch (e) {
     return new Response(`Google connect failed: ${e.message}`, { status: 400 });
@@ -274,7 +274,7 @@ async function admin(env, req, url, route, ctx) {
       return json({ url: authUrl(s, url.origin, state), redirect: redirectUri(url.origin) });
     }
     if (a === 'sync' && req.method === 'POST') {
-      try { return json(await syncGoogle(db)); } catch (e) {
+      try { return json(await syncGoogle(db, env)); } catch (e) {
         await setSetting(db, 'google_last_error', String(e.message || e));
         return json({ error: String(e.message || e) }, { status: 502 });
       }

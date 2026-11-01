@@ -39,8 +39,11 @@ async function gfetch(at, url, init = {}) {
 }
 
 /** Pull 28 days of queries and pages, submit sitemaps, inspect each app's front page. */
-export async function syncGoogle(db) {
+export async function syncGoogle(db, env = {}) {
   const s = await getSettings(db);
+  // The client secret is shared with Marquee as a Worker secret; the console can override it.
+  s.google_client_id ||= env.GOOGLE_CLIENT_ID;
+  s.google_client_secret ||= env.GOOGLE_CLIENT_SECRET;
   if (!s.google_refresh_token) return { skipped: 'not connected' };
   const t = await token({ client_id: s.google_client_id, client_secret: s.google_client_secret,
     refresh_token: s.google_refresh_token, grant_type: 'refresh_token' });
