@@ -7,7 +7,7 @@ Base URL: `https://mutaafaziz.com/playbill/api/admin/`. Send `Authorization: Bea
 | `GET report?days=28` | Returns: <ul><li>`connections`</li><li>`totals`</li><li>`apps[]`: search clicks and impressions, `top_queries` with position and CTR, Google `index` verdict, `crawlers` (AI and search visits by family), and `answers` (AI-answer share plus the misses, each with the domains the engines cited instead)</li><li>`opportunities[]`: impact, app, title, detail, `action`</li></ul> |
 | `GET catalog` | Every app's live entry: the title, description, summary, features, intents, FAQs and keywords that Playbill renders |
 | `GET state` | The catalog, including pending drafts, plus recent changes and connection status. Keys are masked. |
-| `PUT apps/<id>` | Any of `title` (10–65 chars), `description` (70–170), `summary`, `features[]`, `intents[]`, `faqs[{q,a}]`, `keywords[]`, `related[]`, `extra_urls[]`, `links[{label,url}]`, `image`, `video`, `genres[]`. On a general app the change is live within a minute and the URL is queued for the next morning's batched IndexNow push. On a kids app it becomes a **draft** for the operator. |
+| `PUT apps/<id>` | Any of `title` (10–65 chars), `description` (70–170), `summary`, `features[]`, `intents[]`, `faqs[{q,a}]`, `keywords[]`, `related[]`, `extra_urls[]`, `links[{label,url}]`, `image`, `video`, `genres[]`. On a general app the change is live within a minute and the URL is queued for the next morning's batched IndexNow push. |
 
 **Refused:**
 - unknown fields;

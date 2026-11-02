@@ -202,7 +202,7 @@ async function admin(env, req, url, route, ctx) {
   if (req.method !== 'GET' && req.headers.get('origin') && req.headers.get('origin') !== url.origin) return json({ error: 'origin' }, { status: 403 });
   const [head, a, b] = route.split('/');
   const body = req.method === 'PUT' || req.method === 'POST' ? await req.clone().json().catch(() => ({})) : {};
-  // Agents edit copy and read data; keys, connections and kids-app sign-off stay human-only.
+  // Agents edit copy (kids apps included, 2026-11-02) and read data; keys and connections stay human-only.
   if (who === 'agent' && (head === 'settings' || head === 'google' || head === 'bing' || (head === 'apps' && b === 'approve'))) {
     return json({ error: 'operator only' }, { status: 403 });
   }
@@ -247,12 +247,6 @@ async function admin(env, req, url, route, ctx) {
       const { patch, errors } = validateEdit(body);
       if (errors.length) return json({ error: errors.join('; ') }, { status: 400 });
       if (!Object.keys(patch).length) return json({ error: 'nothing to change' }, { status: 400 });
-      if (who === 'agent' && data.audience === 'kids') {
-        const draft = { ...(row.draft ? JSON.parse(row.draft) : {}), ...patch };
-        await db.prepare('UPDATE apps SET draft = ? WHERE id = ?').bind(JSON.stringify(draft), a).run();
-        await logChange(db, a, who, Object.keys(patch), 'draft');
-        return json({ ok: true, status: 'draft', note: 'Kids app: saved as a draft for operator sign-off.' });
-      }
       await db.prepare('UPDATE apps SET data = ?, updated_at = ?, updated_by = ? WHERE id = ?')
         .bind(JSON.stringify({ ...data, ...patch }), new Date().toISOString(), who, a).run();
       await logChange(db, a, who, Object.keys(patch), 'live');

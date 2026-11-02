@@ -35,7 +35,7 @@ If decorating throws, the page is served untouched.
 2. **Same content for people and bots.**
    - The about section is an accessible description of a canvas app (screen readers get it too), not hidden copy.
    - Never serve crawlers something different.
-3. **Kids apps** (OUTATIME, OpenAero, KIN): an agent's edit is saved as a draft, and only the operator can publish it.
+3. **Kids apps** (OUTATIME, OpenAero, KIN): an agent's edit goes live like any other, so it must follow the kids policy (no ads during play, no click-outs, nothing a parent would not want a child to read).
 4. **Agents get 403 on these:** `settings`, `google/*`, `bing/*`, `probe` (it spends API credit), and approving drafts.
 5. **Counts are aggregates only:** `day|app|crawler family|kind → n`. No IP addresses and no visitor ids.
 
