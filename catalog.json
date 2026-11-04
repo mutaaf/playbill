@@ -791,9 +791,9 @@
     "schema_type": "VideoGame",
     "category": "GameApplication",
     "audience": "general",
-    "title": "18-0: Pro Football History Roster Game, Free in Browser",
-    "description": "Spin a franchise and an era, take one real player season per spin, fill seven slots, and see your 18-game record from 0-18 to 18-0. Free in your browser.",
-    "summary": "18-0 is a free pro football history game that runs in a web browser at 18-0.co. Each spin lands on a franchise and an era; you take exactly one player season from it, fill seven slots (a quarterback, two running backs, two receivers, a tight end and a team defense), and get a deterministic rating mapped to an 18-game record from 0-18 to 18-0. Every card is a real season from 1980 to 2025, rated against its own era, with 4,872 rated seasons across 218 franchise-era combinations built from nflverse data. The same roster always earns the same record, and ranked seasons are scored on the server. It is open source (MIT); a public TestFlight beta exists for iPhone and iPad, and no account is required to play.",
+    "title": "17-0 at 18-0.co: Pro Football Roster Game, Free in Browser",
+    "description": "Spin a franchise and an era, take one real player season per spin, fill seven slots, and see your 17-game record from 0-17 to 17-0. Free in your browser.",
+    "summary": "17-0 (at 18-0.co) is a free pro football history game that runs in a web browser at 18-0.co. Each spin lands on a franchise and an era; you take exactly one player season from it, fill seven slots (a quarterback, two running backs, two receivers, a tight end and a team defense), and get a deterministic rating mapped to a 17-game record from 0-17 to 17-0. Every card is a real season from 1980 to 2025, rated against its own era, with 4,872 rated seasons across 218 franchise-era combinations built from nflverse data. The same roster always earns the same record, and ranked seasons are scored on the server. It is open source (MIT); a public TestFlight beta exists for iPhone and iPad, and no account is required to play.",
     "genres": [
       "sports",
       "football",
@@ -833,16 +833,16 @@
     ],
     "faqs": [
       {
-        "q": "Is 18-0 free?",
+        "q": "Is 17-0 at 18-0.co free?",
         "a": "Yes. It is free to play in a web browser at 18-0.co, and no account is required."
       },
       {
         "q": "How does a game work?",
-        "a": "Spin for a franchise and an era, take exactly one player from it, and repeat until seven slots are filled: a quarterback, two running backs, two receivers, a tight end and a team defense. The roster is rated and mapped to an 18-game record."
+        "a": "Spin for a franchise and an era, take exactly one player from it, and repeat until seven slots are filled: a quarterback, two running backs, two receivers, a tight end and a team defense. The roster is rated and mapped to a 17-game record."
       },
       {
-        "q": "How often does someone go 18-0?",
-        "a": "Measured against the real dataset over 400,000 games, 18-0 lands about once in 6,000 games and 17-1 about once in 49."
+        "q": "How often does someone go 17-0?",
+        "a": "Measured against the real dataset over 400,000 games, 17-0 lands about once in 6,000 games and 16-1 about once in 49."
       },
       {
         "q": "Are the players and stats real?",
@@ -853,7 +853,7 @@
         "a": "A public TestFlight beta for iPhone and iPad is linked from the project's README. On any device, the web version can be installed from the browser and plays offline."
       },
       {
-        "q": "Does 18-0 collect data or show ads?",
+        "q": "Does 17-0 collect data or show ads?",
         "a": "No account is needed; signing in is optional so ranked seasons can follow you. The game uses PostHog product analytics, and the web build may show display ads on the results screen."
       }
     ],
