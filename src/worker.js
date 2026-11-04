@@ -235,7 +235,7 @@ async function admin(env, req, url, route, ctx) {
         .bind(JSON.stringify({ ...data, ...draft }), new Date().toISOString(), 'operator', a).run();
       await logChange(db, a, 'operator', Object.keys(draft), 'approved');
       invalidate();
-      ctx.waitUntil(enqueue(env.DB, data.url));
+      ctx.waitUntil(enqueue(env.DB, appUrls({ ...data, ...draft })));
       return json({ ok: true });
     }
     if (b === 'reject' && req.method === 'POST') {
@@ -251,7 +251,7 @@ async function admin(env, req, url, route, ctx) {
         .bind(JSON.stringify({ ...data, ...patch }), new Date().toISOString(), who, a).run();
       await logChange(db, a, who, Object.keys(patch), 'live');
       invalidate();
-      ctx.waitUntil(enqueue(env.DB, data.url));
+      ctx.waitUntil(enqueue(env.DB, appUrls({ ...data, ...patch })));
       return json({ ok: true, status: 'live' });
     }
   }
@@ -298,11 +298,18 @@ async function admin(env, req, url, route, ctx) {
   return json({ error: 'not found' }, { status: 404 });
 }
 
-async function enqueue(db, url) {
+// An app's front page plus its extra_urls (relative ones resolve against the app's origin).
+function appUrls(app) {
+  const out = [app.url];
+  for (const u of app.extra_urls || []) { try { out.push(new URL(u, app.url).href); } catch {} }
+  return out;
+}
+
+async function enqueue(db, urls) {
   const s = await getSettings(db);
   let q = [];
   try { q = JSON.parse(s.indexnow_queue || '[]'); } catch {}
-  if (!q.includes(url)) q.push(url);
+  for (const url of [].concat(urls)) if (!q.includes(url)) q.push(url);
   await setSetting(db, 'indexnow_queue', JSON.stringify(q));
 }
 
