@@ -11,6 +11,6 @@ SEO and answer-engine optimization for every app at [mutaafaziz.com](https://mut
   - Bing Webmaster;
   - aggregate AI-crawler visits;
   - a weekly probe of ChatGPT, Perplexity and Claude that checks whether they cite the apps.
-- **An agent API** so an agent (Hermes) can run the improve-measure loop, with guardrails: no fake ratings, no stuffing, and kids-app edits need human sign-off.
+- **An agent API** so an agent (Hermes) can run the improve-measure loop, with guardrails: no fake ratings, no stuffing, and kids-app edits must follow the kids policy in `AGENTS.md`.
 
 See `AGENTS.md` and `docs/AGENT_API.md`.
