@@ -86,6 +86,11 @@ describe('sitemap + robots', () => {
     expect(x).not.toContain('18-0.co');
     expect(sitemap([game, ext], 'https://18-0.co')).toContain('<loc>https://18-0.co/</loc>');
   });
+  it('lists pages only, never llms.txt or JSON files', () => {
+    const x = sitemap([{ ...game, extra_urls: ['/outatime/guide/', '/resume.json', '/notes.txt'] }]);
+    expect(x).toContain('https://mutaafaziz.com/outatime/guide/');
+    expect(x).not.toMatch(/llms|\.json|\.txt/);
+  });
   it('welcomes AI crawlers and keeps consoles out', () => {
     const r = robots();
     expect(r).toMatch(/User-agent: GPTBot\nAllow: \//);

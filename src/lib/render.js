@@ -150,10 +150,13 @@ export function sitemap(apps, host = ORIGIN) {
     if (new URL(a.url).origin !== host) continue;
     const lastmod = a.modified || a.updated;
     urls.push({ loc: a.url, lastmod, pri: a.kind === 'site' ? '1.0' : '0.8' });
-    for (const x of arr(a.extra_urls)) urls.push({ loc: new URL(x, a.url).href, lastmod, pri: '0.5' });
-    urls.push({ loc: llmsUrl(a), lastmod, pri: '0.3' });
+    // Pages only: llms.txt, JSON and other files are found through robots.txt and <link>, and a sitemap
+    // full of non-pages reads as thin content to reviewers (AdSense "low value content", 2026-11-09).
+    for (const x of arr(a.extra_urls)) {
+      const loc = new URL(x, a.url).href;
+      if (!/\.(txt|json|xml|vcf|md)$/i.test(new URL(loc).pathname)) urls.push({ loc, lastmod, pri: '0.5' });
+    }
   }
-  if (host === ORIGIN) urls.push({ loc: `${ORIGIN}/llms.txt`, pri: '0.4' }, { loc: `${ORIGIN}/llms-full.txt`, pri: '0.3' });
   const seen = new Set();
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls
     .filter((u) => !seen.has(u.loc) && seen.add(u.loc))
