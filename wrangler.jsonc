@@ -29,32 +29,44 @@
       "service": "mutaafaziz-site"
     },
     {
-      "binding": "OUTATIME",
-      "service": "outatime-88"
-    },
-    {
-      "binding": "OPENAERO",
-      "service": "openaero-dfw"
-    },
-    {
-      "binding": "COLDGAS",
-      "service": "cold-gas"
-    },
-    {
-      "binding": "KIN",
-      "service": "kin"
+      "binding": "ADHAN",
+      "service": "mutaafaziz-site"
     },
     {
       "binding": "CHALKTALK",
       "service": "chalk-talk"
     },
     {
+      "binding": "COLDGAS",
+      "service": "cold-gas"
+    },
+    {
       "binding": "HEARTH",
       "service": "hearth"
     },
     {
+      "binding": "HINGEPOP",
+      "service": "hinge-pop"
+    },
+    {
+      "binding": "KIN",
+      "service": "kin"
+    },
+    {
       "binding": "LIBRARY",
       "service": "library"
+    },
+    {
+      "binding": "METAPHASES",
+      "service": "metaphases"
+    },
+    {
+      "binding": "OPENAERO",
+      "service": "openaero-dfw"
+    },
+    {
+      "binding": "OUTATIME",
+      "service": "outatime-88"
     }
   ],
   "vars": {
@@ -73,35 +85,11 @@
       "zone_name": "mutaafaziz.com"
     },
     {
-      "pattern": "mutaafaziz.com/outatime/",
+      "pattern": "mutaafaziz.com/adhan/",
       "zone_name": "mutaafaziz.com"
     },
     {
-      "pattern": "mutaafaziz.com/outatime/llms.txt",
-      "zone_name": "mutaafaziz.com"
-    },
-    {
-      "pattern": "mutaafaziz.com/openaero/",
-      "zone_name": "mutaafaziz.com"
-    },
-    {
-      "pattern": "mutaafaziz.com/openaero/llms.txt",
-      "zone_name": "mutaafaziz.com"
-    },
-    {
-      "pattern": "mutaafaziz.com/coldgas/",
-      "zone_name": "mutaafaziz.com"
-    },
-    {
-      "pattern": "mutaafaziz.com/coldgas/llms.txt",
-      "zone_name": "mutaafaziz.com"
-    },
-    {
-      "pattern": "mutaafaziz.com/kin/",
-      "zone_name": "mutaafaziz.com"
-    },
-    {
-      "pattern": "mutaafaziz.com/kin/llms.txt",
+      "pattern": "mutaafaziz.com/adhan/llms.txt",
       "zone_name": "mutaafaziz.com"
     },
     {
@@ -113,6 +101,14 @@
       "zone_name": "mutaafaziz.com"
     },
     {
+      "pattern": "mutaafaziz.com/coldgas/",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/coldgas/llms.txt",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
       "pattern": "mutaafaziz.com/hearth/",
       "zone_name": "mutaafaziz.com"
     },
@@ -121,11 +117,51 @@
       "zone_name": "mutaafaziz.com"
     },
     {
+      "pattern": "mutaafaziz.com/hingepop/",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/hingepop/llms.txt",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/kin/",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/kin/llms.txt",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
       "pattern": "mutaafaziz.com/library/",
       "zone_name": "mutaafaziz.com"
     },
     {
       "pattern": "mutaafaziz.com/library/llms.txt",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/metaphases/",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/metaphases/llms.txt",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/openaero/",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/openaero/llms.txt",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/outatime/",
+      "zone_name": "mutaafaziz.com"
+    },
+    {
+      "pattern": "mutaafaziz.com/outatime/llms.txt",
       "zone_name": "mutaafaziz.com"
     },
     {

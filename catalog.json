@@ -802,6 +802,329 @@
     ]
   },
   {
+    "id": "adhan",
+    "name": "Adhan Clock",
+    "url": "https://mutaafaziz.com/adhan/",
+    "kind": "app",
+    "schema_type": "SoftwareApplication",
+    "category": "LifestyleApplication",
+    "audience": "general",
+    "title": "Adhan Clock: The Call to Prayer on Every Screen at Home",
+    "description": "A calm, full-screen prayer clock that plays the adhan at all five prayers, on the web, Android phones and TVs, Google Nest and Alexa. Free, no account.",
+    "summary": "Adhan Clock is a calm, full-screen prayer clock that plays the adhan (the call to prayer) at each of the five daily prayers: Fajr, Dhuhr, Asr, Maghrib and Isha, with its own adhan for Fajr. Prayer times are calculated on your device, and the page asks you to check them against your local masjid. The web clock runs in any browser, TVs included: open adhantv.live on the TV and set it up from your phone with the QR code or short code it shows, in portrait or landscape. An Android app for phones, tablets, Android TV and Google TV is available as an APK, with Google Play coming soon, and it casts the adhan to Google Nest speakers and Nest Hubs on the same Wi-Fi. An Alexa skill for Echo and Echo Show is live on the Alexa Skills Store (US). A masjid profile lets one admin keep every screen in step. The clock has no accounts, no ads and no analytics. It is made by Mutaaf Aziz.",
+    "genres": [
+      "prayer times",
+      "adhan",
+      "clock",
+      "smart home"
+    ],
+    "platforms": [
+      "Web browser",
+      "Android (APK)",
+      "Android TV / Google TV",
+      "Google Nest (cast from Android)",
+      "Amazon Alexa (Echo and Echo Show, US)"
+    ],
+    "input": [
+      "touch",
+      "voice"
+    ],
+    "price": "free",
+    "features": [
+      "Plays the adhan at all five daily prayers, with its own adhan for Fajr",
+      "Prayer times calculated on your device; your location stays there",
+      "Full-screen web clock for any browser, TVs included, in portrait or landscape",
+      "Set up a TV from your phone with a QR code or short code, nothing long to type",
+      "Android app for phones, tablets, Android TV and Google TV (APK now, Google Play coming soon)",
+      "Casts the adhan to Google Nest speakers and Nest Hubs on the same Wi-Fi",
+      "Alexa skill for Echo and Echo Show (US): plays the adhan and answers prayer time, iftar, suhoor and Hijri date questions",
+      "A choice of openly licensed adhans with previews, and the dua after the adhan read aloud",
+      "Masjid profiles: one admin sets the settings and uploaded adhans, and every screen follows",
+      "Turns a spare phone or tablet into a dedicated prayer clock",
+      "No accounts, no ads and no analytics"
+    ],
+    "intents": [
+      "adhan clock",
+      "azan clock for tv",
+      "play the adhan at home on every speaker",
+      "prayer time clock full screen browser",
+      "athan app for android tv",
+      "adhan on google nest speakers",
+      "alexa skill that plays the azan at prayer times",
+      "masjid prayer time display for screens",
+      "turn an old tablet into a prayer clock",
+      "call to prayer app no ads no account"
+    ],
+    "faqs": [
+      {
+        "q": "Is Adhan Clock free?",
+        "a": "Yes. The web clock is free and needs no account. Choose your location, tap once to allow sound, and keep the clock open for the adhan."
+      },
+      {
+        "q": "Which devices does it work on?",
+        "a": "Any screen with a web browser, including TVs; Android phones, tablets, Android TV and Google TV through the Android app (an APK now, Google Play coming soon); Google Nest speakers and Nest Hubs, which the Android app casts to; and Echo and Echo Show through the Alexa skill (US)."
+      },
+      {
+        "q": "How do I put it on a TV?",
+        "a": "Open adhantv.live in the TV's browser, then scan the QR code it shows with your phone or enter its short code, and choose portrait or landscape."
+      },
+      {
+        "q": "How do I set it up with Alexa?",
+        "a": "Say \"Alexa, enable Adhan Clock\" or enable it in the Alexa app, sign in with Amazon, pick your city and adhans, then add one Routine in the Alexa app that plays the skill on an Echo when the Adhan Clock device opens at prayer time."
+      },
+      {
+        "q": "How are prayer times calculated?",
+        "a": "On your device. The page asks you to check the times against your local masjid and adjust the settings if they differ."
+      },
+      {
+        "q": "What data does it keep?",
+        "a": "The clock has no accounts, ads or analytics, and your location stays on the device. Only Alexa or Google Home linking and a masjid profile store prayer settings (coordinates, time zone and choices) on the server, and setting up a TV from your phone holds them for 15 minutes at most."
+      }
+    ],
+    "keywords": [
+      "adhan",
+      "azan",
+      "athan",
+      "call to prayer",
+      "prayer times",
+      "salah",
+      "prayer clock",
+      "Android TV",
+      "Google Nest",
+      "Alexa",
+      "masjid",
+      "no ads"
+    ],
+    "image": "https://mutaafaziz.com/adhan/og.png",
+    "video": null,
+    "repo": null,
+    "released": "2026-11-02",
+    "updated": "2026-11-05",
+    "version": null,
+    "related": [
+      "hearth",
+      "site"
+    ],
+    "extra_urls": []
+  },
+  {
+    "id": "hingepop",
+    "name": "Hinge Pop",
+    "url": "https://mutaafaziz.com/hingepop/",
+    "kind": "game",
+    "schema_type": "VideoGame",
+    "category": "GameApplication",
+    "audience": "general",
+    "title": "Hinge Pop: Free Bubble-Splitting Arcade Game in Your Browser",
+    "description": "Tap to split bubbles and keep them off an electric hinge. Play free on the web, solo or two players on one screen; the iPhone and iPad app is in beta.",
+    "summary": "Hinge Pop is an arcade game about keeping bubbles off an electric hinge, a line across the middle of the arena. Tap a bubble to split it, tap the smallest to pop it, swipe to slice several at once, or snap the hinge to fling bubbles back. A large bubble that crosses the hinge costs a shield; lose all three and the level starts over. In two-player mode each player owns one side of the hinge on the same screen, and a crossing lands on your rival. The free web version at the end of the landing page has basic bubbles, endless levels and two players. A native app for iPhone, iPad and iPhone Duo, where the hinge sits on the real fold, adds eight bubble types, five power-ups, 50 hand-made levels in five chapters plus Infinity, and Arcade and Daily modes; it is in public beta on TestFlight and coming to the App Store. No account, ads or analytics. It is made by Mutaaf Aziz.",
+    "genres": [
+      "arcade",
+      "puzzle action",
+      "bubble popping",
+      "local multiplayer"
+    ],
+    "platforms": [
+      "Web browser",
+      "iPhone and iPad (TestFlight beta)"
+    ],
+    "input": [
+      "touch",
+      "mouse"
+    ],
+    "price": "free",
+    "features": [
+      "Tap to split, tap the smallest to pop, swipe to slice and snap the hinge to fling bubbles back",
+      "Chain pops: popping one tiny bubble pops the tiny bubbles close to it",
+      "Each bubble size has its own mass, bounce and speed, and bubbles collide",
+      "Two players on one screen, each owning one side of the hinge",
+      "Free web version with basic bubbles and endless levels",
+      "App: eight bubble types, including Armored, Magnetic, Golden and Boss",
+      "App: five power-ups, eight guest stars and 50 levels in five chapters, then Infinity",
+      "App: Arcade and Daily modes, and the hinge on the real fold on iPhone Duo",
+      "No account, no ads and no analytics; progress stays on your device"
+    ],
+    "intents": [
+      "hinge pop game",
+      "bubble splitting game browser free",
+      "two player game on one phone screen",
+      "arcade game tap to split bubbles",
+      "game for foldable phone using the hinge",
+      "bubble pop game like pang in browser",
+      "local two player ipad game",
+      "free arcade game no ads no account",
+      "hinge pop testflight beta",
+      "one finger tap and swipe arcade game"
+    ],
+    "faqs": [
+      {
+        "q": "Is Hinge Pop free?",
+        "a": "The web version on the Hinge Pop page is free to play, with no account. The iPhone and iPad app is in public beta on TestFlight and is coming to the App Store."
+      },
+      {
+        "q": "How do I play?",
+        "a": "Tap a bubble to split it, and tap the smallest size to pop it. Swipe to slice several at once, and drag off the hinge to snap it and fling nearby bubbles back. Keep large bubbles from crossing the hinge: each crossing costs a shield, and losing all three restarts the level. The smallest bubbles pop on the hinge at no cost."
+      },
+      {
+        "q": "Can two people play?",
+        "a": "Yes. In two-player mode each player owns one side of the hinge on the same screen. A bubble you let cross charges you and lands on your rival. Take their last shield and you win; if every bubble is cleared first, the higher score wins."
+      },
+      {
+        "q": "What is the difference between the web game and the app?",
+        "a": "The web game has basic bubbles, endless levels and two players on one screen. The app adds all eight bubble types, five power-ups, four arenas, five chapters plus Infinity, Arcade and Daily modes, and puts the hinge on the real fold on iPhone Duo."
+      },
+      {
+        "q": "Does it collect data or show ads?",
+        "a": "No. There is no account, no ads and no analytics, and your progress stays on your device."
+      }
+    ],
+    "keywords": [
+      "Hinge Pop",
+      "bubble game",
+      "arcade",
+      "split bubbles",
+      "two player",
+      "same screen",
+      "browser game",
+      "iPhone",
+      "iPad",
+      "foldable",
+      "free",
+      "no ads"
+    ],
+    "image": "https://mutaafaziz.com/hingepop/art/og.jpg",
+    "video": null,
+    "repo": "https://github.com/mutaaf/hinge-pop",
+    "released": "2026-11-04",
+    "updated": "2026-11-10",
+    "version": "0.1.2",
+    "related": [
+      "coldgas",
+      "outatime",
+      "kin"
+    ],
+    "extra_urls": [
+      "/hingepop/play/",
+      "/hingepop/support/",
+      "/hingepop/privacy/"
+    ]
+  },
+  {
+    "id": "metaphases",
+    "name": "Metaphases",
+    "url": "https://mutaafaziz.com/metaphases/",
+    "kind": "app",
+    "schema_type": "WebApplication",
+    "category": "FinanceApplication",
+    "audience": "general",
+    "title": "Metaphases: Free Earnings Calendar, Phase by Phase",
+    "description": "See who reports earnings and when, how each stock moved after past reports, and which reports touch your stocks and funds. Free, no sign-up, not advice.",
+    "summary": "Metaphases is a free earnings calendar and research workbench in the browser. It shows when about 630 widely followed companies report quarterly results, drawing each report's timing as a moon phase: before the open, during market hours or after the close. Reported days are marked Beat, Mixed or Miss against the consensus estimate, and economic releases sit on the same calendar. A ticker sheet shows the next report, the typical one-day move, past reactions and two rules-based grades that show their inputs. Compass looks through 25 popular ETFs to show which reports touch your money each week. It is not financial advice: it never says buy, sell or hold and never sets price targets. There are no accounts, ads or analytics; data comes from Finnhub, FRED, Nasdaq and Yahoo Finance. It is made by Mutaaf Aziz.",
+    "genres": [
+      "earnings calendar",
+      "stock market",
+      "personal finance",
+      "investing research"
+    ],
+    "platforms": [
+      "Web browser",
+      "Installable web app (PWA)"
+    ],
+    "input": [
+      "touch",
+      "mouse",
+      "keyboard"
+    ],
+    "price": "free",
+    "features": [
+      "Month, week and day earnings calendar for about 630 popular companies, or every $1B+ revenue reporter",
+      "Report timing drawn as moon phases: before the open, during market hours or after the close",
+      "Beat, Mixed and Miss results against consensus, plus jobs, CPI, PPI, PCE, GDP and FOMC dates inline",
+      "Ticker sheet: next report, typical move, past reactions, a one-year chart, peers and analyst views",
+      "Rules-based Setup and Compass quality grades (A+ to F) that show every input",
+      "Compass: paste stocks and funds to see, through 25 popular ETFs, which reports touch your money each week",
+      "Market Mood: a fear-to-greed gauge from six inspectable signals with 60 days of history",
+      "Hype Check: paste a social post or ticker to see the business, its earnings-day swings and red flags",
+      "Watchlist with a calendar feed of report dates, Retrace month review and a plain-English glossary",
+      "Optional AI explanations with a free built-in model or your own key; it never gives advice",
+      "No accounts, ads, analytics or trackers; your watchlist and holdings stay in your browser"
+    ],
+    "intents": [
+      "metaphases earnings calendar",
+      "earnings calendar this week free",
+      "when does a company report earnings before open or after close",
+      "how much does a stock usually move after earnings",
+      "which earnings reports affect my etfs",
+      "etf look through earnings exposure",
+      "earnings beat or miss results this month",
+      "fear and greed index with inputs",
+      "earnings calendar with cpi and fomc dates",
+      "earnings calendar no sign up no ads"
+    ],
+    "faqs": [
+      {
+        "q": "Is Metaphases free?",
+        "a": "Yes. It is free in any browser, with no sign-up and no account."
+      },
+      {
+        "q": "Are the grades financial advice?",
+        "a": "No. Setup grades, Compass grades, Market Mood and Hype Check flags are rules-based information computed from historical prices, consensus estimates and financial statements. Metaphases never says buy, sell or hold and never sets a price target."
+      },
+      {
+        "q": "What do the moon phases mean?",
+        "a": "They show when a report lands: a waxing moon before the opening bell, a full moon during market hours, a waning moon after the close, and a dashed outline when the time is not known yet."
+      },
+      {
+        "q": "How does Compass know what is inside my ETFs?",
+        "a": "It keeps a weekly snapshot of the top 10 holdings and weights of 25 popular ETFs, multiplies your fund value by each company's weight, and adds any shares you hold directly."
+      },
+      {
+        "q": "Where is my data stored?",
+        "a": "On your device, in your browser's local storage. There are no accounts, analytics, trackers or ads, and a personal AI key travels only with the request that uses it and is never stored on the server."
+      },
+      {
+        "q": "Where does the data come from?",
+        "a": "Finnhub, FRED, Nasdaq and Yahoo Finance."
+      },
+      {
+        "q": "Is there a version for kids?",
+        "a": "Yes. Metaphases has a separate kids area, and a companion iPhone and iPad app for kids called Moon Club. Its download goes through a grown-up page at https://mutaafaziz.com/metaphases/kids/app."
+      }
+    ],
+    "keywords": [
+      "earnings calendar",
+      "earnings season",
+      "stocks",
+      "ETF look-through",
+      "beat or miss",
+      "consensus estimates",
+      "market mood",
+      "fear and greed",
+      "economic calendar",
+      "watchlist",
+      "free",
+      "no sign-up"
+    ],
+    "image": "https://mutaafaziz.com/metaphases/og.png",
+    "video": null,
+    "repo": "https://github.com/mutaaf/metaphases",
+    "released": "2026-10-31",
+    "updated": "2026-11-03",
+    "version": "0.1.0",
+    "related": [
+      "hearth",
+      "site"
+    ],
+    "extra_urls": [
+      "/metaphases/guide/",
+      "/metaphases/today",
+      "/metaphases/check",
+      "/metaphases/compass",
+      "/metaphases/retrace",
+      "/metaphases/learn"
+    ]
+  },
+  {
     "id": "18-0",
     "name": "18-0",
     "url": "https://18-0.co/",

@@ -13,9 +13,11 @@ import { report } from './report.js';
 import { authUrl, exchangeCode, syncGoogle, syncBing, indexNow, redirectUri } from './search.js';
 import { probeChunk } from './probe.js';
 
-// App id → service binding of the Worker that serves it.
-const BINDINGS = { site: 'SITE', outatime: 'OUTATIME', openaero: 'OPENAERO', coldgas: 'COLDGAS', kin: 'KIN',
-  chalktalk: 'CHALKTALK', hearth: 'HEARTH', library: 'LIBRARY' };
+import { FRONTED } from './cast.js';
+
+// App id → service binding of the Worker that serves it. Generated from Cast List (scripts/sync.mjs).
+const BINDINGS = Object.fromEntries(Object.values(FRONTED).map((f) => [f.id, f.binding]));
+const ID_BY_PATH = Object.fromEntries(Object.entries(FRONTED).map(([path, f]) => [path, f.id]));
 const json = (data, init = {}) => new Response(JSON.stringify(data), {
   ...init, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store', ...(init.headers || {}) },
 });
@@ -44,8 +46,8 @@ export default {
         const site = await (await env.SITE.fetch(new Request(`${ORIGIN}/llms.txt`))).text();
         return text(llmsFull(site, await loadApps(env.DB)));
       }
-      const ll = p.match(/^\/([a-z0-9-]+)\/llms\.txt$/);
-      if (ll) return llms(env, ctx, req, ll[1]);
+      const ll = p.match(/^(\/.+\/)llms\.txt$/);
+      if (ll && ID_BY_PATH[ll[1]]) return llms(env, ctx, req, ID_BY_PATH[ll[1]]);
       const ext = p.match(/^\/playbill\/ext\/([a-z0-9-]+)\/(robots\.txt|sitemap\.xml|llms\.txt|head\.html)$/);
       if (ext) return external(env, ctx, req, ext[1], ext[2]);
       if (p === '/playbill/api/google/callback') return googleCallback(env, url);
@@ -72,9 +74,7 @@ export default {
 };
 
 function frontApp(p) {
-  if (p === '/') return 'site';
-  const m = p.match(/^\/([a-z0-9-]+)\/$/);
-  return m && BINDINGS[m[1]] && m[1] !== 'site' ? m[1] : null;
+  return ID_BY_PATH[p] || null;
 }
 
 function count(env, ctx, req, appId, kind) {
