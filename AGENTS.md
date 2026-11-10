@@ -3,7 +3,7 @@
 How every app at mutaafaziz.com (and 18-0.co) introduces itself to search engines and AI assistants.
 One Cloudflare Worker; D1 `playbill` holds the catalog, crawler counts, search data and AI-answer probes.
 
-**Edge decoration, with no app changes.** Exact-path routes beat each app's `mutaafaziz.com/<app>*` route. Playbill fetches the app's own page through a service binding, then adds:
+**Edge decoration, with no app changes.** Exact-path routes (generated from Cast List, see below) beat each app's `mutaafaziz.com/<app>*` route. Playbill fetches the app's own page through a service binding, then adds:
 - `<title>` and the meta description (from the catalog);
 - canonical and Open Graph tags;
 - JSON-LD (VideoGame/WebApplication, FAQPage, BreadcrumbList, Person);
@@ -41,10 +41,12 @@ If decorating throws, the page is served untouched.
 
 ## Adding an app
 
-1. Add an entry to `catalog.json`; `test/render.test.js` checks its shape.
-2. If it lives on mutaafaziz.com:
-   - add a service binding and add the id to `BINDINGS` in `src/worker.js`;
-   - add routes `mutaafaziz.com/<app>/` and `mutaafaziz.com/<app>/llms.txt` in `wrangler.jsonc`.
-3. Deploy. A new id is seeded into D1 automatically. Existing rows aren't overwritten, because D1 is the live copy, so change those through the console or API.
+Which pages Playbill fronts is decided by Cast List (mutaaf/cast-list), the portfolio's one app catalog, not here.
+1. In Cast List, give the app `worker` (the Worker serving its page) and `ids.playbill`. Its own CI refuses a live page on mutaafaziz.com that is neither on Playbill nor has a `notOn.playbill` reason.
+2. Here, run `npm run sync`. It rewrites the service bindings and app routes in `wrangler.jsonc` and `src/cast.js`. Don't edit those by hand.
+3. Write the app's search copy as an entry in `catalog.json`. The tests fail until it exists, and its `url` and `audience` must match Cast List's.
+4. `npm run deploy` (it runs `sync --check` first). A new id is seeded into D1 automatically. Existing rows aren't overwritten, because D1 is the live copy, so change copy through the console or API. URL and audience always come from Cast List, whatever D1 says.
+
+CI also runs `sync --check` daily, so if Cast List moves on and Playbill hasn't followed, a red build emails the owner.
 
 See `docs/AGENT_API.md` for the agent loop.

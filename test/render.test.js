@@ -2,6 +2,8 @@ import { describe, it, expect } from 'vitest';
 import { jsonLd, headPlan, aboutHtml, llmsTxt, llmsFull, sitemap, robots, classify, validateEdit, appForUrl, llmsUrl } from '../src/lib/render.js';
 import { sample, score, isoWeek } from '../src/probe.js';
 import catalog from '../catalog.json';
+import { FRONTED, IDENTITY } from '../src/cast.js';
+import { plan } from '../scripts/sync.mjs';
 
 const game = {
   id: 'outatime', name: 'OUTATIME 88', url: 'https://mutaafaziz.com/outatime/', kind: 'game', schema_type: 'VideoGame',
@@ -24,6 +26,34 @@ describe('catalog.json', () => {
       expect(a.url).toMatch(/^https:\/\//);
       expect(validateEdit({ title: a.title, description: a.description, summary: a.summary, faqs: a.faqs, intents: a.intents }).errors, a.id).toEqual([]);
     }
+  });
+});
+
+describe('Cast List', () => {
+  it('every app Cast List puts on Playbill has search copy here, with the same URL and audience', () => {
+    for (const [id, c] of Object.entries(IDENTITY)) {
+      const a = catalog.find((x) => x.id === id);
+      expect(a, `${id}: Cast List puts it on Playbill; write its entry in catalog.json`).toBeTruthy();
+      expect(a.url, id).toBe(c.url);
+      expect(a.audience, id).toBe(c.audience);
+    }
+    expect(FRONTED['/']).toEqual({ id: 'site', binding: 'SITE' });
+  });
+  it('plans a binding and two exact routes per fronted page, never a wildcard over an app', () => {
+    const apps = [
+      { slug: 'hinge-pop', name: 'Hinge Pop', url: 'https://mutaafaziz.com/hingepop/', audience: 'general', worker: 'hinge-pop', surfaces: ['playbill'], ids: { playbill: 'hingepop' } },
+      { slug: 'moon-club', name: 'Moon Club', url: 'https://mutaafaziz.com/metaphases/kids/', audience: 'kids', worker: 'metaphases', surfaces: [], ids: {} },
+      { slug: '17-0', name: '17-0', url: 'https://18-0.co/', audience: 'general', surfaces: ['playbill'], ids: { playbill: '18-0' } },
+    ];
+    const { next, ids } = plan(apps, { vars: { INDEXNOW_KEY: 'k' } });
+    expect(next.services).toEqual([{ binding: 'HINGEPOP', service: 'hinge-pop' }]);
+    const r = next.routes.map((x) => x.pattern);
+    expect(r).toContain('mutaafaziz.com/hingepop/');
+    expect(r).toContain('mutaafaziz.com/hingepop/llms.txt');
+    expect(r.some((x) => x.includes('kids'))).toBe(false);
+    expect(r.filter((x) => x.endsWith('*'))).toEqual(['mutaafaziz.com/playbill/*']);
+    expect(ids).toEqual(['hingepop', '18-0']);
+    expect(() => plan([{ ...apps[0], worker: undefined }], {})).toThrow(/no worker/);
   });
 });
 

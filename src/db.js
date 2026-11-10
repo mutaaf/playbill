@@ -1,6 +1,9 @@
 // D1 schema + seed. The Worker creates its own tables on first request (idempotent).
 // The repo's catalog.json is the seed; after that D1 is the live copy (the console and Agency edit it).
 import seed from '../catalog.json';
+import { IDENTITY } from './cast.js';
+
+const IDENTITY_OF = (id) => { const c = IDENTITY[id]; return c ? { url: c.url, audience: c.audience } : {}; };
 
 const SCHEMA = [
   `CREATE TABLE IF NOT EXISTS settings (key TEXT PRIMARY KEY, value TEXT)`,
@@ -49,7 +52,8 @@ export function invalidate() { cache = { at: 0, apps: null }; }
 export async function loadApps(db, { fresh = false } = {}) {
   if (!fresh && cache.apps && Date.now() - cache.at < 60e3) return cache.apps;
   const { results } = await db.prepare('SELECT * FROM apps ORDER BY sort').all();
-  const apps = results.map((r) => ({ ...JSON.parse(r.data), ...(r.modified && { modified: r.modified }),
+  // Name, URL and audience are Cast List's (the portfolio's catalog); the rest is Playbill's own copy.
+  const apps = results.map((r) => ({ ...JSON.parse(r.data), ...IDENTITY_OF(r.id), ...(r.modified && { modified: r.modified }),
     _draft: r.draft ? JSON.parse(r.draft) : null, _updated_at: r.updated_at, _updated_by: r.updated_by }));
   cache = { at: Date.now(), apps };
   return apps;
