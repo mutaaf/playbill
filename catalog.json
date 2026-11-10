@@ -197,7 +197,10 @@
       "openaero",
       "kin"
     ],
-    "multiplayer": true
+    "multiplayer": true,
+    "extra_urls": [
+      "/outatime/guide/"
+    ]
   },
   {
     "id": "openaero",
@@ -298,6 +301,9 @@
     "related": [
       "outatime",
       "kin"
+    ],
+    "extra_urls": [
+      "/openaero/guide/"
     ]
   },
   {
@@ -397,6 +403,9 @@
       "outatime",
       "openaero",
       "18-0"
+    ],
+    "extra_urls": [
+      "/coldgas/guide/"
     ]
   },
   {
@@ -494,7 +503,8 @@
       "openaero"
     ],
     "extra_urls": [
-      "/kin/about/"
+      "/kin/about/",
+      "/kin/guide/"
     ]
   },
   {
@@ -594,6 +604,9 @@
     "related": [
       "18-0",
       "library"
+    ],
+    "extra_urls": [
+      "/chalktalk/guide/"
     ]
   },
   {
@@ -693,7 +706,8 @@
       "library"
     ],
     "extra_urls": [
-      "/hearth/demo/"
+      "/hearth/demo/",
+      "/hearth/guide/"
     ]
   },
   {
