@@ -1,0 +1,59 @@
+# Search copy drafts: Prompter writes a title and description for each app whose facts in Cast List changed,
+# into catalog.json, as ONE pull request the owner merges (or closes). Never merged by a machine.
+# Triggers: a `cast-catalog-changed` repository_dispatch (for when something can send one), by hand, and
+# daily as the safety net, since nothing that can reach this repo hears Cast List's pushes without a new
+# credential. A run with nothing to draft makes no call and no PR.
+name: draft-copy
+on:
+  repository_dispatch:
+    types: [cast-catalog-changed]
+  workflow_dispatch:
+  schedule: [{ cron: '41 8 * * *' }]
+concurrency:
+  group: draft-copy
+  cancel-in-progress: false
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      BRANCH: drafts/search-copy
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Build on the open drafts PR, if there is one (keeps the owner's edits there)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          n=$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number')
+          echo "OPEN_PR=$n" >> "$GITHUB_ENV"
+          if [ -n "$n" ]; then git checkout -B "$BRANCH" "origin/$BRANCH" && git merge -q --no-edit origin/main; fi
+      - run: npm ci
+      - name: Draft with Prompter
+        env:
+          PROMPTER_TOKEN: ${{ secrets.PROMPTER_TOKEN }}
+        run: node scripts/draft-copy.mjs --body "$RUNNER_TEMP/body.md"
+      - name: Open or update the drafts PR
+        run: |
+          if git diff --quiet -- catalog.json copy-sources.json; then echo "nothing to draft"; exit 0; fi
+          sig=$(grep -o '<!-- drafts:[^>]*-->' "$RUNNER_TEMP/body.md")
+          if gh pr list --head "$BRANCH" --state closed --json body,mergedAt --jq '.[] | select(.mergedAt == null) | .body' | grep -qF "$sig"; then
+            echo "the owner closed these same drafts; not reopening"; exit 0
+          fi
+          npm run check
+          git checkout -B "$BRANCH"
+          git add catalog.json copy-sources.json
+          git commit -q -m "Search copy drafts from Prompter ($(date -u +%F))"
+          if [ -n "$OPEN_PR" ]; then
+            git push -q origin "$BRANCH"
+            gh pr comment "$OPEN_PR" --body-file "$RUNNER_TEMP/body.md"; echo "added drafts to #$OPEN_PR"
+          else
+            git push -q --force origin "$BRANCH"
+            gh pr create --base main --head "$BRANCH" --title "Search copy drafts from Prompter" --body-file "$RUNNER_TEMP/body.md"
+          fi
