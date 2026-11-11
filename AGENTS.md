@@ -27,6 +27,8 @@ If decorating throws, the page is served untouched.
 
 `npm run up` installs and runs `wrangler dev`. `npm run check` runs the gate. `npm run deploy` deploys.
 
+Deploys are automatic: Cloudflare Workers Builds is connected to this repo (connected 2026-11-11), so every push to `main` runs `npm ci` then `npm run deploy`. If `sync --check` fails, the build fails and the live Worker stays as it was. Build logs are in the dashboard under Workers → playbill → Deployments. Run `npm run deploy` by hand only to ship something without pushing.
+
 ## Policy (enforced in `src/lib/render.js` and `src/worker.js`)
 
 1. **Truth only.**
@@ -45,7 +47,7 @@ Which pages Playbill fronts is decided by Cast List (mutaaf/cast-list), the port
 1. In Cast List, give the app `worker` (the Worker serving its page) and `ids.playbill`. Its own CI refuses a live page on mutaafaziz.com that is neither on Playbill nor has a `notOn.playbill` reason.
 2. Here, run `npm run sync`. It rewrites the service bindings and app routes in `wrangler.jsonc` and `src/cast.js`. Don't edit those by hand.
 3. Write the app's search copy as an entry in `catalog.json`. The tests fail until it exists, and its `url` and `audience` must match Cast List's.
-4. `npm run deploy` (it runs `sync --check` first). A new id is seeded into D1 automatically. Existing rows aren't overwritten, because D1 is the live copy, so change copy through the console or API. URL and audience always come from Cast List, whatever D1 says.
+4. Merge to `main`; Workers Builds deploys it (`npm run deploy` runs `sync --check` first). A new id is seeded into D1 automatically. Existing rows aren't overwritten, because D1 is the live copy, so change copy through the console or API. URL and audience always come from Cast List, whatever D1 says.
 
 CI also runs `sync --check` daily, so if Cast List moves on and Playbill hasn't followed, a red build emails the owner.
 
