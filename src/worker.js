@@ -4,10 +4,11 @@
 //            GET /<app>/llms.txt       per-app brief for AI agents
 //            GET /robots.txt, /sitemap.xml, /llms-full.txt, /<INDEXNOW_KEY>.txt
 //            GET /playbill/ext/<app>/(robots.txt|sitemap.xml|llms.txt|head.html)  for apps on other hosts (18-0.co)
-//   operator /playbill/api/admin/*     cookie session (ADMIN_PASSWORD) or agent (Bearer AGENT_TOKEN)
+//   operator /playbill/api/admin/*     cookie session (ADMIN_PASSWORD) or agent (Bearer AGENT_TOKEN); Cloudflare Access
+//                                     once ACCESS_TEAM/ACCESS_AUD/OPERATOR_EMAILS are set (stagehand)
 //   static   /playbill/admin/          the console
 import { ensureSchema, getSettings, setSetting, loadApps, invalidate, publicApp } from './db.js';
-import { role, sessionCookie, clearCookie, timingSafeEqual } from './auth.js';
+import { operator, session, timingSafeEqual, log } from 'stagehand';
 import { headPlan, aboutHtml, llmsTxt, llmsFull, sitemap, robots, classify, validateEdit, pathOf, ORIGIN } from './lib/render.js';
 import { report } from './report.js';
 import { authUrl, exchangeCode, syncGoogle, syncBing, indexNow, redirectUri } from './search.js';
@@ -16,6 +17,8 @@ import { probeChunk } from './probe.js';
 import { FRONTED } from './cast.js';
 
 // App id → service binding of the Worker that serves it. Generated from Cast List (scripts/sync.mjs).
+const SERVICE = 'playbill';
+const consoleSession = session({ cookie: 'playbill_session', path: '/playbill' });
 const BINDINGS = Object.fromEntries(Object.values(FRONTED).map((f) => [f.id, f.binding]));
 const ID_BY_PATH = Object.fromEntries(Object.entries(FRONTED).map(([path, f]) => [path, f.id]));
 const json = (data, init = {}) => new Response(JSON.stringify(data), {
@@ -28,50 +31,71 @@ const SETTING_KEYS = ['google_client_id', 'gsc_sites', 'probe_enabled', 'probe_p
 
 export default {
   async fetch(req, env, ctx) {
-    const url = new URL(req.url);
-    const p = url.pathname;
-    // The edge pages must never fail because of Playbill: serve the app's page untouched on any error.
-    const front = frontApp(p);
-    if (front) {
-      const upstream = env[BINDINGS[front]];
-      const res = await upstream.fetch(req);
-      try { return await decorate(env, ctx, req, res, front); } catch (e) { console.error('decorate', e); return res; }
-    }
-    try {
-      if (p === `/${env.INDEXNOW_KEY}.txt` || p === `/playbill/ext/18-0/${env.INDEXNOW_KEY}.txt`) return text(env.INDEXNOW_KEY);
-      await ensureSchema(env.DB);
-      if (p === '/robots.txt') return text(robots());
-      if (p === '/sitemap.xml') return text(sitemap(await loadApps(env.DB)), 'application/xml');
-      if (p === '/llms-full.txt') {
-        const site = await (await env.SITE.fetch(new Request(`${ORIGIN}/llms.txt`))).text();
-        return text(llmsFull(site, await loadApps(env.DB)));
-      }
-      const ll = p.match(/^(\/.+\/)llms\.txt$/);
-      if (ll && ID_BY_PATH[ll[1]]) return llms(env, ctx, req, ID_BY_PATH[ll[1]]);
-      const ext = p.match(/^\/playbill\/ext\/([a-z0-9-]+)\/(robots\.txt|sitemap\.xml|llms\.txt|head\.html)$/);
-      if (ext) return external(env, ctx, req, ext[1], ext[2]);
-      if (p === '/playbill/api/google/callback') return googleCallback(env, url);
-      if (p.startsWith('/playbill/api/admin/')) return admin(env, req, url, p.slice('/playbill/api/admin/'.length), ctx);
-      if (p === '/playbill' || p === '/playbill/') return Response.redirect(`${url.origin}/playbill/admin/`, 302);
-      return env.ASSETS.fetch(req);
-    } catch (e) {
-      console.error(e);
-      return json({ error: 'server error' }, { status: 500 });
-    }
+    const t = Date.now(), route = routeOf(new URL(req.url).pathname);
+    let res;
+    try { res = await handle(req, env, ctx); } catch (e) { log(SERVICE, 'request', { method: req.method, route, ms: Date.now() - t, ok: false, error: String(e?.message ?? e).slice(0, 200) }); throw e; }
+    log(SERVICE, 'request', { method: req.method, route, status: res.status, ms: Date.now() - t, ok: res.status < 500 });
+    return res;
   },
 
   async scheduled(evt, env) {
-    await ensureSchema(env.DB);
-    if (evt.cron === '41 * * * *') {
-      try { await probeChunk(env.DB); } catch (e) { await setSetting(env.DB, 'probe_last_error', String(e.message || e)); }
-      return;
-    }
-    // Daily: notice which pages changed, tell IndexNow, refresh Google + Bing data.
-    try { await freshness(env); } catch (e) { await setSetting(env.DB, 'indexnow_last_error', String(e.message || e)); }
-    try { await syncGoogle(env.DB, env); } catch (e) { await setSetting(env.DB, 'google_last_error', String(e.message || e)); }
-    try { await syncBing(env.DB); } catch (e) { await setSetting(env.DB, 'bing_last_error', String(e.message || e)); }
+    const t = Date.now();
+    const failed = await cron(evt, env);
+    log(SERVICE, 'scheduled', { cron: evt.cron, ms: Date.now() - t, ok: failed.length === 0, ...(failed.length ? { failed } : {}) });
   },
 };
+
+// Route family for logs: no ids beyond the app path, no query strings.
+const routeOf = (p) => (p.startsWith('/playbill/api/admin/') ? `/playbill/api/admin/${p.split('/')[4] || ''}` : p.split('/').slice(0, 4).join('/'));
+
+async function handle(req, env, ctx) {
+  const url = new URL(req.url);
+  const p = url.pathname;
+  // The edge pages must never fail because of Playbill: serve the app's page untouched on any error.
+  const front = frontApp(p);
+  if (front) {
+    const upstream = env[BINDINGS[front]];
+    const res = await upstream.fetch(req);
+    try { return await decorate(env, ctx, req, res, front); } catch (e) { log(SERVICE, 'decorate', { app: front, ok: false, error: String(e?.message ?? e).slice(0, 200) }); return res; }
+  }
+  try {
+    if (p === `/${env.INDEXNOW_KEY}.txt` || p === `/playbill/ext/18-0/${env.INDEXNOW_KEY}.txt`) return text(env.INDEXNOW_KEY);
+    await ensureSchema(env.DB);
+    if (p === '/robots.txt') return text(robots());
+    if (p === '/sitemap.xml') return text(sitemap(await loadApps(env.DB)), 'application/xml');
+    if (p === '/llms-full.txt') {
+      const site = await (await env.SITE.fetch(new Request(`${ORIGIN}/llms.txt`))).text();
+      return text(llmsFull(site, await loadApps(env.DB)));
+    }
+    const ll = p.match(/^(\/.+\/)llms\.txt$/);
+    if (ll && ID_BY_PATH[ll[1]]) return llms(env, ctx, req, ID_BY_PATH[ll[1]]);
+    const ext = p.match(/^\/playbill\/ext\/([a-z0-9-]+)\/(robots\.txt|sitemap\.xml|llms\.txt|head\.html)$/);
+    if (ext) return external(env, ctx, req, ext[1], ext[2]);
+    if (p === '/playbill/api/google/callback') return googleCallback(env, url);
+    if (p.startsWith('/playbill/api/admin/')) return admin(env, req, url, p.slice('/playbill/api/admin/'.length), ctx);
+    if (p === '/playbill' || p === '/playbill/') return Response.redirect(`${url.origin}/playbill/admin/`, 302);
+    return env.ASSETS.fetch(req);
+  } catch (e) {
+    log(SERVICE, 'error', { route: routeOf(p), error: String(e?.message ?? e).slice(0, 200), ok: false });
+    return json({ error: 'server error' }, { status: 500 });
+  }
+}
+
+// Returns the names of the jobs that failed (each failure is also kept in settings for the console).
+async function cron(evt, env) {
+  await ensureSchema(env.DB);
+  const failed = [];
+  const job = async (name, key, fn) => { try { await fn(); } catch (e) { failed.push(name); await setSetting(env.DB, key, String(e.message || e)); } };
+  if (evt.cron === '41 * * * *') {
+    await job('probe', 'probe_last_error', () => probeChunk(env.DB));
+    return failed;
+  }
+  // Daily: notice which pages changed, tell IndexNow, refresh Google + Bing data.
+  await job('indexnow', 'indexnow_last_error', () => freshness(env));
+  await job('google', 'google_last_error', () => syncGoogle(env.DB, env));
+  await job('bing', 'bing_last_error', () => syncBing(env.DB));
+  return failed;
+}
 
 function frontApp(p) {
   return ID_BY_PATH[p] || null;
@@ -194,10 +218,10 @@ async function admin(env, req, url, route, ctx) {
       await new Promise((r) => setTimeout(r, 600));
       return json({ error: 'wrong password' }, { status: 401 });
     }
-    return json({ ok: true }, { headers: { 'set-cookie': await sessionCookie(env.ADMIN_PASSWORD) } });
+    return json({ ok: true }, { headers: { 'set-cookie': await consoleSession.issue(env.ADMIN_PASSWORD) } });
   }
-  if (route === 'logout') return json({ ok: true }, { headers: { 'set-cookie': clearCookie } });
-  const who = await role(req, env);
+  if (route === 'logout') return json({ ok: true }, { headers: { 'set-cookie': consoleSession.clear } });
+  const who = await operator(req, env, { session: consoleSession });
   if (!who) return json({ error: 'sign in' }, { status: 401 });
   if (req.method !== 'GET' && req.headers.get('origin') && req.headers.get('origin') !== url.origin) return json({ error: 'origin' }, { status: 403 });
   const [head, a, b] = route.split('/');

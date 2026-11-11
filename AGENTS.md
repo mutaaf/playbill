@@ -25,6 +25,10 @@ If decorating throws, the page is served untouched.
 - Daily `23 6 * * *`: hash every front page and IndexNow-ping the changed ones, then sync Search Console (queries, indexing, sitemaps) and Bing.
 - Hourly `41 * * * *`: run a chunk of the weekly AI-answer probe. The chunking keeps each run under the Workers subrequest cap.
 
+Operator auth, the agent token and the log line come from the shared [stagehand](https://github.com/mutaaf/stagehand)
+package (cookie `playbill_session` on `/playbill`; Cloudflare Access takes over once `ACCESS_TEAM`, `ACCESS_AUD` and
+`OPERATOR_EMAILS` are set). Every request and cron run logs one JSON line `{service, event, ms, ok}`.
+
 `npm run up` installs and runs `wrangler dev`. `npm run check` runs the gate. `npm run deploy` deploys.
 
 Deploys are automatic: Cloudflare Workers Builds is connected to this repo (connected 2026-11-11), so every push to `main` runs `npm ci` then `npm run deploy`. If `sync --check` fails, the build fails and the live Worker stays as it was. Build logs are in the dashboard under Workers → playbill → Deployments. Run `npm run deploy` by hand only to ship something without pushing.
