@@ -55,4 +55,14 @@ Which pages Playbill fronts is decided by Cast List (mutaaf/cast-list), the port
 
 CI also runs `sync --check` daily, so if Cast List moves on and Playbill hasn't followed, a red build emails the owner.
 
+## Search copy drafts (Prompter)
+
+Titles and descriptions are drafted, not hand-typed, and never published by a machine.
+- `.github/workflows/draft-copy.yml` runs `scripts/draft-copy.mjs`: for each app Cast List puts on Playbill whose facts (name, tagline, keywords, kind, audience, ads) changed since its copy was drafted (`copy-sources.json`), Prompter (`POST /prompter/api/run`, share `playbill`, token in the `PROMPTER_TOKEN` secret; plaintext in `~/.config/prompter/tokens` on the owner's Mac) drafts a title (20–60) and description (70–155). `src/lib/copy.js` checks every draft; a draft that fails twice keeps today's copy.
+- Kids apps and `ads: false` apps: the prompt forbids ads, tracking, money, urgency and engagement bait, and the `BAIT` word check refuses any draft that has them.
+- Drafts land in ONE pull request (`drafts/search-copy`). The owner edits, merges or closes it. Later runs add commits to an open PR instead of opening another, and never reopen drafts the owner closed.
+- On merge, Workers Builds deploys and `applyMergedCopy` (src/db.js) replaces the live title and description of each app whose catalog.json copy changed since the last deploy. A first sighting is a baseline, so console edits are never overwritten by an unchanged catalog.
+- Triggers: `repository_dispatch` (`cast-catalog-changed`), by hand (`gh workflow run draft-copy`), and daily at 08:41 UTC as the net. Nothing sends the dispatch yet: Cast List's pushes reach only Cue, and dispatching here would need a new GitHub credential.
+- PRs opened with the workflow's own token don't start CI, so the job runs `npm run check` before pushing.
+
 See `docs/AGENT_API.md` for the agent loop.
