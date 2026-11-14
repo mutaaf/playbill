@@ -619,7 +619,7 @@
     "category": "UtilitiesApplication",
     "audience": "general",
     "title": "Hearth: One remote for every TV",
-    "description": "Hearth is a universal remote app for your home. Control smart televisions like LG, Samsung, webOS, or Tizen devices via wifi.",
+    "description": "Hearth is a universal remote application for your home. Control LG, Samsung, webOS, and Tizen smart TVs using your iPhone via Wi-Fi.",
     "summary": "Hearth is an open-source universal TV remote that finds the LG, Samsung, Roku, Google TV and Apple TV devices on your home Wi-Fi and gives every phone in the house a fast remote. It runs on an always-on computer in your home (such as a Mac mini, an old laptop or a Raspberry Pi) with Node.js, and any phone or browser on the same Wi-Fi opens it, with no accounts, codes or cloud in between. Features include a swipe pad, volume, an app shelf, inputs, messages on screen, opening an app on every TV at once, and one button that turns every TV off. A public demo with pretend TVs runs at mutaafaziz.com/hearth/demo/, and an iPhone app is described as coming soon to the App Store. It is MIT-licensed and made by Mutaaf Aziz.",
     "genres": [
       "TV remote",
