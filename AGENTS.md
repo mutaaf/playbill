@@ -51,7 +51,7 @@ Which pages Playbill fronts is decided by Cast List (mutaaf/cast-list), the port
 1. In Cast List, give the app `worker` (the Worker serving its page) and `ids.playbill`. Its own CI refuses a live page on mutaafaziz.com that is neither on Playbill nor has a `notOn.playbill` reason.
 2. Here, run `npm run sync`. It rewrites the service bindings and app routes in `wrangler.jsonc` and `src/cast.js`. Don't edit those by hand.
 3. Write the app's search copy as an entry in `catalog.json`. The tests fail until it exists, and its `url` and `audience` must match Cast List's.
-4. Merge to `main`; Workers Builds deploys it (`npm run deploy` runs `sync --check` first). A new id is seeded into D1 automatically. Existing rows aren't overwritten, because D1 is the live copy, so change copy through the console or API. URL and audience always come from Cast List, whatever D1 says.
+4. Merge to `main`; Workers Builds deploys it (`npm run deploy` runs `sync --check` first). A new id is seeded into D1 automatically. Existing rows aren't overwritten on first sight, because D1 is the live copy; after that, a merged change to an app's title and description, or to its summary, features and FAQs, replaces the live one (see below). URL and audience always come from Cast List, whatever D1 says.
 
 CI also runs `sync --check` daily, so if Cast List moves on and Playbill hasn't followed, a red build emails the owner.
 
@@ -61,7 +61,7 @@ Titles and descriptions are drafted, not hand-typed, and never published by a ma
 - `.github/workflows/draft-copy.yml` runs `scripts/draft-copy.mjs`: for each app Cast List puts on Playbill whose facts (name, tagline, keywords, kind, audience, ads) changed since its copy was drafted (`copy-sources.json`), Prompter (`POST /prompter/api/run`, share `playbill`, token in the `PROMPTER_TOKEN` secret; plaintext in `~/.config/prompter/tokens` on the owner's Mac) drafts a title (20–60) and description (70–155). `src/lib/copy.js` checks every draft; a draft that fails twice keeps today's copy.
 - Kids apps and `ads: false` apps: the prompt forbids ads, tracking, money, urgency and engagement bait, and the `BAIT` word check refuses any draft that has them.
 - Drafts land in ONE pull request (`drafts/search-copy`). The owner edits, merges or closes it. Later runs add commits to an open PR instead of opening another, and never reopen drafts the owner closed.
-- On merge, Workers Builds deploys and `applyMergedCopy` (src/db.js) replaces the live title and description of each app whose catalog.json copy changed since the last deploy. A first sighting is a baseline, so console edits are never overwritten by an unchanged catalog.
+- On merge, Workers Builds deploys and `applyMergedCopy` (src/db.js) replaces the live title and description of each app whose catalog.json copy changed since the last deploy. The hand-written body (summary, features, FAQs) follows the same rule, tracked separately as `<id>#body` in `copy_seen`, so a merged fix to a privacy line or a count goes live too. A first sighting is a baseline, so console edits are never overwritten by an unchanged catalog.
 - Triggers: `repository_dispatch` (`cast-catalog-changed`), by hand (`gh workflow run draft-copy`), and daily at 08:41 UTC as the net. Nothing sends the dispatch yet: Cast List's pushes reach only Cue, and dispatching here would need a new GitHub credential.
 - PRs opened with the workflow's own token don't start CI, so the job runs `npm run check` before pushing.
 

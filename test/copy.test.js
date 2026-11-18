@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { eligible, inputHash, prompt, parseDraft, checkDraft, copyUpdates, copyHash, careful } from '../src/lib/copy.js';
+import { eligible, inputHash, prompt, parseDraft, checkDraft, copyUpdates, copyHash, bodyUpdates, bodyHash, careful } from '../src/lib/copy.js';
 import { run, body } from '../scripts/draft-copy.mjs';
 
 const kin = { slug: 'kin', name: 'KIN', tagline: 'A tiny creature that hops between screens.', keywords: ['kin creature pet'], kind: 'game', audience: 'kids', surfaces: ['playbill'], ids: { playbill: 'kin' } };
@@ -53,5 +53,16 @@ describe('search copy drafts', () => {
     expect(copyUpdates(seed, [])).toEqual({ baseline: [{ id: 'a', hash: copyHash(seed[0]) }, { id: 'b', hash: copyHash(seed[1]) }], apply: [] });
     const seen = [{ id: 'a', hash: copyHash(seed[0]) }, { id: 'b', hash: 'old' }];
     expect(copyUpdates(seed, seen)).toEqual({ baseline: [], apply: [{ id: 'b', hash: copyHash(seed[1]), title: 'T2', description: 'D2' }] });
+  });
+  it('a merged body change (summary, features, FAQs) publishes on deploy; a first sighting is only a baseline', () => {
+    const a = { id: 'a', title: 'T', description: 'D', summary: 'S', features: ['f'], faqs: [{ q: 'Q', a: 'A' }] };
+    const b = { ...a, id: 'b', summary: 'S2' };
+    // Body rows live beside the title rows in copy_seen, keyed <id>#body, so neither rule sees the other's rows.
+    expect(bodyUpdates([a, b], [{ id: 'a', hash: copyHash(a) }])).toEqual({ baseline: [{ id: 'a#body', hash: bodyHash(a) }, { id: 'b#body', hash: bodyHash(b) }], apply: [] });
+    const fixed = { ...b, faqs: [{ q: 'Q', a: 'Fixed' }] };
+    const seen = [{ id: 'a#body', hash: bodyHash(a) }, { id: 'b#body', hash: bodyHash(b) }, { id: 'b', hash: copyHash(b) }];
+    expect(bodyUpdates([a, fixed], seen)).toEqual({ baseline: [], apply: [{ id: 'b', key: 'b#body', hash: bodyHash(fixed), summary: 'S2', features: ['f'], faqs: [{ q: 'Q', a: 'Fixed' }] }] });
+    expect(copyUpdates([a, fixed], seen).apply).toEqual([]); // the title rule ignores a body change
+    expect(bodyHash({ ...a, title: 'Other' })).toBe(bodyHash(a)); // and the body rule ignores a title change
   });
 });
