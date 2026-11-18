@@ -26,6 +26,11 @@ export function fnv(s) {
 }
 export const inputHash = (a) => fnv(JSON.stringify(inputsOf(a)));
 export const copyHash = (e) => fnv(`${e.title}\n${e.description}`);
+/** The hand-written copy the about section renders: summary, features and FAQs. */
+export const BODY = ['summary', 'features', 'faqs'];
+export const bodyHash = (e) => fnv(JSON.stringify(BODY.map((k) => e[k] ?? null)));
+/** copy_seen key for an app's body copy, beside the title + description row keyed by the bare id. */
+export const bodyKey = (id) => `${id}#body`;
 
 export function prompt(a, retry = null) {
   const rules = [
@@ -80,6 +85,23 @@ export function copyUpdates(seed, seen) {
     const hash = copyHash(e);
     if (!was.has(e.id)) baseline.push({ id: e.id, hash });
     else if (was.get(e.id) !== hash) apply.push({ id: e.id, hash, title: e.title, description: e.description });
+  }
+  return { baseline, apply };
+}
+
+/**
+ * The same rule for the body copy (summary, features, FAQs), so a merged fix to what the page says about an
+ * app (a privacy line, a level count) reaches D1 too. Rows in copy_seen are keyed `<id>#body`. A first
+ * sighting is a baseline, as above, so the console's and agents' edits are never overwritten by an unchanged catalog.
+ */
+export function bodyUpdates(seed, seen) {
+  const was = new Map(seen.map((r) => [r.id, r.hash]));
+  const baseline = [], apply = [];
+  for (const e of seed) {
+    if (!e.summary) continue;
+    const key = bodyKey(e.id), hash = bodyHash(e);
+    if (!was.has(key)) baseline.push({ id: key, hash });
+    else if (was.get(key) !== hash) apply.push({ id: e.id, key, hash, summary: e.summary, features: e.features || [], faqs: e.faqs || [] });
   }
   return { baseline, apply };
 }

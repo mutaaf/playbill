@@ -2,7 +2,7 @@
 // The repo's catalog.json is the seed; after that D1 is the live copy (the console and Agency edit it).
 import seed from '../catalog.json';
 import { IDENTITY } from './cast.js';
-import { copyUpdates } from './lib/copy.js';
+import { copyUpdates, bodyUpdates } from './lib/copy.js';
 
 const IDENTITY_OF = (id) => { const c = IDENTITY[id]; return c ? { url: c.url, audience: c.audience } : {}; };
 
@@ -37,13 +37,22 @@ export async function ensureSchema(db) {
   ready = true;
 }
 
-// catalog.json is reviewed copy: the owner merged it (the search-copy drafts PR, or a hand edit). A title or
-// description that changed there since the last deploy replaces the live one; anything else stays D1's.
+// catalog.json is reviewed copy: the owner merged it (the search-copy drafts PR, or a hand edit). A title and
+// description, or a summary, features and FAQs, that changed there since the last deploy replace the live
+// ones; anything else stays D1's.
 export async function applyMergedCopy(db) {
   const { results } = await db.prepare('SELECT id, hash FROM copy_seen').all();
   const { baseline, apply } = copyUpdates(seed, results || []);
+  const body = bodyUpdates(seed, results || []);
   const at = new Date().toISOString();
   const stmts = [
+    ...body.baseline.map((b) => db.prepare('INSERT OR IGNORE INTO copy_seen (id, hash) VALUES (?, ?)').bind(b.id, b.hash)),
+    ...body.apply.flatMap((u) => [
+      db.prepare("UPDATE apps SET data = json_set(data, '$.summary', ?, '$.features', json(?), '$.faqs', json(?)), updated_at = ?, updated_by = 'catalog' WHERE id = ?")
+        .bind(u.summary, JSON.stringify(u.features), JSON.stringify(u.faqs), at, u.id),
+      db.prepare('UPDATE copy_seen SET hash = ? WHERE id = ?').bind(u.hash, u.key),
+      db.prepare('INSERT INTO changes (at, app_id, by, fields, status) VALUES (?,?,?,?,?)').bind(at, u.id, 'catalog', 'summary,features,faqs', 'merged'),
+    ]),
     ...baseline.map((b) => db.prepare('INSERT OR IGNORE INTO copy_seen (id, hash) VALUES (?, ?)').bind(b.id, b.hash)),
     ...apply.flatMap((u) => [
       db.prepare("UPDATE apps SET data = json_set(data, '$.title', ?, '$.description', ?), updated_at = ?, updated_by = 'catalog' WHERE id = ?").bind(u.title, u.description, at, u.id),
@@ -52,7 +61,7 @@ export async function applyMergedCopy(db) {
     ]),
   ];
   if (stmts.length) await db.batch(stmts);
-  return { baseline: baseline.length, applied: apply.map((u) => u.id) };
+  return { baseline: baseline.length + body.baseline.length, applied: [...apply.map((u) => u.id), ...body.apply.map((u) => `${u.id}#body`)] };
 }
 
 export async function getSettings(db) {
