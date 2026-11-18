@@ -342,7 +342,7 @@
       "Several courses, including the Wall and the Lineup, with today's and all-time boards",
       "Free Drive on real mountain and coastal roads, an endless seeded road, and a Sandbox for building ramps",
       "Optional bring-your-own AI key (Anthropic, OpenAI, xAI or Gemini) for the judges",
-      "No accounts and no personal data; leaderboard names are three-letter initials"
+      "No accounts; leaderboard names are three-letter initials, and usage analytics are anonymous"
     ],
     "intents": [
       "cold gas game",
@@ -375,7 +375,7 @@
       },
       {
         "q": "Does it collect data or show ads?",
-        "a": "There are no accounts and no personal data; leaderboard entries use three-letter initials. Ads may appear on the title screen and between results, and a rewarded ad that asks the panel again is opt-in. No ads show during a run."
+        "a": "There are no accounts, and leaderboard entries use three-letter initials. The web game sends anonymous usage analytics to PostHog through mutaafaziz.com's own relay, which shortens IP addresses. Ads may appear on the title screen and between results, and a rewarded ad that asks the panel again is opt-in. No ads show during a run."
       },
       {
         "q": "Is it affiliated with a car company?",
@@ -577,7 +577,7 @@
       },
       {
         "q": "What happens to my data and API key?",
-        "a": "Your own key is kept in the browser and sent only to its provider. Player names stay on the device; the free AI receives only the X's and O's. Anonymous, cookieless usage counts are collected without storing IPs, and one ad banner may appear at the foot of the Plays list."
+        "a": "Your own key is kept in the browser and sent only to its provider. Player names stay on the device; the free AI receives only the X's and O's. Anonymous usage analytics go to PostHog through mutaafaziz.com's own relay, with no cookies and IP addresses shortened, and one ad banner may appear at the foot of the Plays list."
       },
       {
         "q": "Is it open source?",
@@ -671,7 +671,7 @@
       },
       {
         "q": "Does Hearth send my data to the cloud?",
-        "a": "Your TVs, pairing keys and settings stay on your home network. Hearth talks to TVs directly on your Wi-Fi with no account. Optional features such as connection help or reading a power bill send only limited, scrubbed details, and you see them first."
+        "a": "Your TVs, pairing keys and settings stay on your home network. Hearth talks to TVs directly on your Wi-Fi with no account. Optional features such as connection help or reading a power bill send only limited, scrubbed details, and you see them first. The iPhone app sends anonymous usage events and crash reports, which Settings turns off, and the Hearth pages on mutaafaziz.com collect anonymous usage analytics."
       },
       {
         "q": "Does Hearth show ads?",
@@ -811,7 +811,7 @@
     "audience": "general",
     "title": "Adhan Clock: The Call to Prayer on Every Screen at Home",
     "description": "A calm, full-screen prayer clock that plays the adhan at all five prayers, on the web, Android phones and TVs, Google Nest and Alexa. Free, no account.",
-    "summary": "Adhan Clock is a calm, full-screen prayer clock that plays the adhan (the call to prayer) at each of the five daily prayers: Fajr, Dhuhr, Asr, Maghrib and Isha, with its own adhan for Fajr. Prayer times are calculated on your device, and the page asks you to check them against your local masjid. The web clock runs in any browser, TVs included: open adhantv.live on the TV and set it up from your phone with the QR code or short code it shows, in portrait or landscape. An Android app for phones, tablets, Android TV and Google TV is available as an APK, with Google Play coming soon, and it casts the adhan to Google Nest speakers and Nest Hubs on the same Wi-Fi. An Alexa skill for Echo and Echo Show is live on the Alexa Skills Store (US). A masjid profile lets one admin keep every screen in step. The clock has no accounts, no ads and no analytics. It is made by Mutaaf Aziz.",
+    "summary": "Adhan Clock is a calm, full-screen prayer clock that plays the adhan (the call to prayer) at each of the five daily prayers: Fajr, Dhuhr, Asr, Maghrib and Isha, with its own adhan for Fajr. Prayer times are calculated on your device, and the page asks you to check them against your local masjid. The web clock runs in any browser, TVs included: open adhantv.live on the TV and set it up from your phone with the QR code or short code it shows, in portrait or landscape. An Android app for phones, tablets, Android TV and Google TV is available as an APK, with Google Play coming soon, and it casts the adhan to Google Nest speakers and Nest Hubs on the same Wi-Fi. An Alexa skill for Echo and Echo Show is live on the Alexa Skills Store (US). A masjid profile lets one admin keep every screen in step. The clock itself has no accounts, ads or analytics. It is made by Mutaaf Aziz.",
     "genres": [
       "prayer times",
       "adhan",
@@ -841,7 +841,7 @@
       "A choice of openly licensed adhans with previews, and the dua after the adhan read aloud",
       "Masjid profiles: one admin sets the settings and uploaded adhans, and every screen follows",
       "Turns a spare phone or tablet into a dedicated prayer clock",
-      "No accounts, no ads and no analytics"
+      "No accounts, no ads and no analytics in the clock"
     ],
     "intents": [
       "adhan clock",
@@ -878,7 +878,7 @@
       },
       {
         "q": "What data does it keep?",
-        "a": "The clock has no accounts, ads or analytics, and your location stays on the device. Only Alexa or Google Home linking and a masjid profile store prayer settings (coordinates, time zone and choices) on the server, and setting up a TV from your phone holds them for 15 minutes at most."
+        "a": "The clock has no accounts, ads or analytics, and your location stays on the device. This guide page on mutaafaziz.com counts visits anonymously (pages, clicks and city-level location) and skips browsers that send Global Privacy Control or Do Not Track. Only Alexa or Google Home linking and a masjid profile store prayer settings (coordinates, time zone and choices) on the server, and setting up a TV from your phone holds them for 15 minutes at most."
       }
     ],
     "keywords": [
@@ -917,7 +917,7 @@
     "audience": "general",
     "title": "Hinge Pop: Free Bubble-Splitting Arcade Game in Your Browser",
     "description": "Tap to split bubbles and keep them off an electric hinge. Play free on the web, solo or two players on one screen; the iPhone and iPad app is in beta.",
-    "summary": "Hinge Pop is an arcade game about keeping bubbles off an electric hinge, a line across the middle of the arena. Tap a bubble to split it, tap the smallest to pop it, swipe to slice several at once, or snap the hinge to fling bubbles back. A large bubble that crosses the hinge costs a shield; lose all three and the level starts over. In two-player mode each player owns one side of the hinge on the same screen, and a crossing lands on your rival. The free web version at the end of the landing page has basic bubbles, endless levels and two players. A native app for iPhone, iPad and iPhone Duo, where the hinge sits on the real fold, adds eight bubble types, five power-ups, 50 hand-made levels in five chapters plus Infinity, and Arcade and Daily modes; it is in public beta on TestFlight and coming to the App Store. No account, ads or analytics. It is made by Mutaaf Aziz.",
+    "summary": "Hinge Pop is an arcade game about keeping bubbles off an electric hinge, a line across the middle of the arena. Tap a bubble to split it, tap the smallest to pop it, swipe to slice several at once, or snap the hinge to fling bubbles back. A large bubble that crosses the hinge costs a shield; lose all three and the level starts over. In two-player mode each player owns one side of the hinge on the same screen, and a crossing lands on your rival. The free web version on the landing page has basic bubbles, endless levels and two players. A native app for iPhone, iPad and iPhone Duo, where the hinge sits on the real fold, adds eight bubble types, six villains, five power-ups, 800 levels in 80 worlds plus Infinity, and Arcade and Daily modes; it is in public beta on TestFlight and coming to the App Store. No account and no ads; usage analytics are anonymous. It is made by Mutaaf Aziz.",
     "genres": [
       "arcade",
       "puzzle action",
@@ -940,9 +940,9 @@
       "Two players on one screen, each owning one side of the hinge",
       "Free web version with basic bubbles and endless levels",
       "App: eight bubble types, including Armored, Magnetic, Golden and Boss",
-      "App: five power-ups, eight guest stars and 50 levels in five chapters, then Infinity",
+      "App: six villains, five power-ups, eight guest stars and 800 levels in 80 worlds, then Infinity",
       "App: Arcade and Daily modes, and the hinge on the real fold on iPhone Duo",
-      "No account, no ads and no analytics; progress stays on your device"
+      "No account and no ads; progress stays on your device, and usage analytics are anonymous"
     ],
     "intents": [
       "hinge pop game",
@@ -971,11 +971,11 @@
       },
       {
         "q": "What is the difference between the web game and the app?",
-        "a": "The web game has basic bubbles, endless levels and two players on one screen. The app adds all eight bubble types, five power-ups, four arenas, five chapters plus Infinity, Arcade and Daily modes, and puts the hinge on the real fold on iPhone Duo."
+        "a": "The web game has basic bubbles, endless levels and two players on one screen. The app adds all eight bubble types, six villains, five power-ups, 800 levels in 80 worlds plus Infinity, Normal and Overdrive, Arcade and Daily modes, and puts the hinge on the real fold on iPhone Duo."
       },
       {
         "q": "Does it collect data or show ads?",
-        "a": "No. There is no account, no ads and no analytics, and your progress stays on your device."
+        "a": "There is no account and there are no ads, and your progress stays on your device. The website and web game send anonymous usage analytics (pages, clicks, a few game events and city-level location) to PostHog through mutaafaziz.com's own relay, which shortens IP addresses, and skip browsers that send Global Privacy Control or Do Not Track. From version 0.4.1 the app counts plays too, and Settings turns that off."
       }
     ],
     "keywords": [
@@ -1019,7 +1019,7 @@
     "audience": "general",
     "title": "Metaphases: Free Earnings Calendar, Phase by Phase",
     "description": "See who reports earnings and when, how each stock moved after past reports, and which reports touch your stocks and funds. Free, no sign-up, not advice.",
-    "summary": "Metaphases is a free earnings calendar and research workbench in the browser. It shows when about 630 widely followed companies report quarterly results, drawing each report's timing as a moon phase: before the open, during market hours or after the close. Reported days are marked Beat, Mixed or Miss against the consensus estimate, and economic releases sit on the same calendar. A ticker sheet shows the next report, the typical one-day move, past reactions and two rules-based grades that show their inputs. Compass looks through 25 popular ETFs to show which reports touch your money each week. It is not financial advice: it never says buy, sell or hold and never sets price targets. There are no accounts, ads or analytics; data comes from Finnhub, FRED, Nasdaq and Yahoo Finance. It is made by Mutaaf Aziz.",
+    "summary": "Metaphases is a free earnings calendar and research workbench in the browser. It shows when about 630 widely followed companies report quarterly results, drawing each report's timing as a moon phase: before the open, during market hours or after the close. Reported days are marked Beat, Mixed or Miss against the consensus estimate, and economic releases sit on the same calendar. A ticker sheet shows the next report, the typical one-day move, past reactions and two rules-based grades that show their inputs. Compass looks through 25 popular ETFs to show which reports touch your money each week. It is not financial advice: it never says buy, sell or hold and never sets price targets. There are no accounts or ads, and the grown-up pages send anonymous usage analytics (never the kids area); data comes from Finnhub, FRED, Nasdaq and Yahoo Finance. It is made by Mutaaf Aziz.",
     "genres": [
       "earnings calendar",
       "stock market",
@@ -1047,7 +1047,7 @@
       "Hype Check: paste a social post or ticker to see the business, its earnings-day swings and red flags",
       "Watchlist with a calendar feed of report dates, Retrace month review and a plain-English glossary",
       "Optional AI explanations with a free built-in model or your own key; it never gives advice",
-      "No accounts, ads, analytics or trackers; your watchlist and holdings stay in your browser"
+      "No accounts or ads; your watchlist and holdings stay in your browser"
     ],
     "intents": [
       "metaphases earnings calendar",
@@ -1080,7 +1080,7 @@
       },
       {
         "q": "Where is my data stored?",
-        "a": "On your device, in your browser's local storage. There are no accounts, analytics, trackers or ads, and a personal AI key travels only with the request that uses it and is never stored on the server."
+        "a": "On your device, in your browser's local storage. There are no accounts or ads. The grown-up pages send anonymous usage analytics (pages, clicks and which public ticker or calendar view was opened, never holdings) through mutaafaziz.com's own relay, and the kids area never loads it. A personal AI key travels only with the request that uses it and is never stored on the server."
       },
       {
         "q": "Where does the data come from?",
